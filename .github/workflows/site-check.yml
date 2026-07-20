@@ -1,0 +1,29 @@
+name: Site Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe live site
+        run: |
+          echo "=== 首頁狀態與伺服器標頭 ==="
+          curl -sSI https://blossomkids.tw/ | head -12
+          echo
+          echo "=== 首頁引用的畢業照檔名 ==="
+          curl -sS https://blossomkids.tw/ | grep -o 'graduation-30[^"]*' | sort -u || echo "(首頁抓不到 graduation 字樣)"
+          echo
+          echo "=== 首頁標題 ==="
+          curl -sS https://blossomkids.tw/ | grep -o '<title>[^<]*' | head -1
+          echo
+          echo "=== GSC 驗證檔 ==="
+          curl -sS -o /dev/null -w "HTTP %{http_code}\n" https://blossomkids.tw/google00a268e494d7ca7a.html
+          curl -sS https://blossomkids.tw/google00a268e494d7ca7a.html | head -1 || true
+          echo
+          echo "=== 打碼新檔名圖片 ==="
+          curl -sS -o /dev/null -w "HTTP %{http_code} size=%{size_download}\n" https://blossomkids.tw/images/graduation-30-masked.jpg
+          echo
+          echo "=== 舊檔名圖片（應為 404） ==="
+          curl -sS -o /dev/null -w "HTTP %{http_code}\n" https://blossomkids.tw/images/graduation-30.jpg
