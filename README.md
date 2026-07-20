@@ -1,3 +1,18 @@
+# 華兒園精緻幼兒園官網（blossomkids.tw）
+
+## 部署方式（雙軌，互不影響）
+
+1. **正式站：GitHub Pages ＋ 自訂網域 `blossomkids.tw`**
+   - push 到 `main` 會觸發 `.github/workflows/deploy-pages.yml`：以 `STATIC_EXPORT=1 npx next build` 產出純靜態 `out/` 後部署到 GitHub Pages。
+   - `next.config.ts` 只在 `STATIC_EXPORT=1` 時啟用 `output: "export"` 與 `images.unoptimized`，平常開發與 vinext 部署不受影響。
+   - `public/CNAME`（=`blossomkids.tw`）會隨 build 進入 out/；repo 根目錄的 `CNAME` 為 GitHub Pages 設定用，兩者需保持一致。
+   - repo Settings → Pages 的 Source 需設為 **GitHub Actions**。
+2. **預覽站：chatgpt.site（vinext）**：原 starter 流程不變（`npm run dev` / `vinext build`）。
+
+注意：正式站是純靜態，**不可使用 server actions、API routes、資料庫**；表單送出請走 LINE 或第三方服務。`tsconfig.json` 已將 `db/`、`worker/` 等 Cloudflare 專用檔案排除於 Next 型別檢查之外。
+
+---
+
 # vinext-starter
 
 A clean full-stack starter running on

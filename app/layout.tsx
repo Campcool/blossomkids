@@ -6,7 +6,7 @@ import { site } from "@/lib/site-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://huaeryuan-kindergarten.charmingchen.chatgpt.site"),
+  metadataBase: new URL("https://blossomkids.tw"),
   title: {
     default: `${site.shortName}精緻幼兒園｜三重幼兒園・安親課後`,
     template: `%s｜${site.shortName}`,
