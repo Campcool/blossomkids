@@ -161,7 +161,7 @@ export default function Home() {
             <PhotoSlot label="教室全景" className="photo-wide" />
             <PhotoSlot label="閱讀與角落學習" />
             <figure className="home-campus-real">
-              <Image src="/images/graduation-30.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
+              <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
               <figcaption>第 30 屆畢業典禮紀錄</figcaption>
             </figure>
           </div>

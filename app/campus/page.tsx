@@ -52,7 +52,7 @@ export default function CampusPage() {
             <div><p className="eyebrow">GROWING TOGETHER</p><h2>一屆一相簿<br />每段回憶有歸處</h2><p className="large-copy">畢業合照按學年度整理；僅刊登已取得書面授權的影像。</p><StatusBadge>正式公開前確認影像授權</StatusBadge></div>
             <div className="yearbook-grid">
               <figure className="yearbook-real-photo">
-                <Image src="/images/graduation-30.jpg" alt="華兒園第30屆畢業典禮合照" fill sizes="(max-width: 780px) calc(100vw - 30px), 34vw" />
+                <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮合照" fill sizes="(max-width: 780px) calc(100vw - 30px), 34vw" />
                 <figcaption><strong>第 30 屆畢業典禮</strong><span>學年度與活動日期待補</span></figcaption>
               </figure>
               <PhotoSlot label="其他學年度" detail="畢業合照候補" />
