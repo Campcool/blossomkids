@@ -14,15 +14,15 @@
 
 網站服務範圍包含兩歲專班、幼兒園與國小課後照顧，重點是讓家長快速看懂日程、環境、費用、招生與聯絡資訊。
 
-## 正式託管與網域
+## 正式託管與網域（2026-07-20 業主最終決定，優先於任何舊描述）
 
-正式網站由 OpenAI Sites／Cloudflare 基礎設施提供服務，不是由 GitHub Pages 託管。
+**正式網站由 GitHub Pages 託管**，透過 `.github/workflows/deploy-pages.yml` 在每次 push `main` 時以 `STATIC_EXPORT=1 npx next build` 產出靜態站自動部署。
 
-- `blossomkids.tw` 與 `www.blossomkids.tw` 已完成 DNS、路由與 SSL 設定。
-- GoDaddy DNS 已指向 Sites。
-- GitHub 目前作為原始碼備份與協作來源。
-- 儲存庫中的 `CNAME` 是先前 GitHub Pages 設定留下的檔案，不代表目前的正式託管方式。
-- 不要在沒有確認的情況下，把 DNS 改回 `185.199.*` 或 `campcool.github.io`。
+- GoDaddy DNS：`@` 四筆 A 記錄指向 `185.199.108–111.153`，`www` CNAME 指向 `campcool.github.io`。
+- repo Settings → Pages：Source＝GitHub Actions、Custom domain＝`blossomkids.tw`、Enforce HTTPS 開啟。
+- 2026-07-20 曾發生：OpenAI Sites 透過 GoDaddy Domain Connect 把 DNS 改走，導致網域回到未打碼舊版。業主已恢復 DNS 並刪除 `_openai-site-verification`（含 .www）與 `_cf-custom-hostname`（含 .www）四筆 TXT 認領記錄。
+- ⚠️ **絕對不要**再把本網域綁定到 OpenAI Sites／chatgpt.site 或改走 DNS；chatgpt.site 僅得作為開發預覽，且其上不得保留未去識別的兒童照片。
+- 外部驗證工具：手動觸發 `.github/workflows/site-check.yml` 可從 GitHub 主機實測正式站內容與供應者。
 
 ## 技術架構
 
@@ -192,3 +192,14 @@ AI 完成一輪工作後，請留下簡短紀錄：
 ---
 
 最後更新：2026-07-20，由 Codex 依目前正式網站、GitHub 與網域狀態整理。
+
+
+## 變更紀錄（新條目加在最上面）
+
+### 2026-07-20（Claude）
+- 建立 GitHub Pages 部署管線（STATIC_EXPORT 條件式靜態輸出，vinext 預覽不受影響）；綁定 blossomkids.tw。
+- 預約表單正式可用：組訊息＋自動複製，提供園長 LINE（ID 18250021，`lib/site-data.ts`）／致電／簡訊三管道；日後填 `lineOaId` 自動升級官方帳號預填。
+- 畢業照 13 位孩童眼部遮蔽（改名 `graduation-30-masked.jpg`）；未遮蔽原圖不得再進公開 repo。
+- 文案合規：大班移除ㄅㄆㄇ/ABC、「蒙氏」改「啟蒙」、裁罰資訊依業主指示不揭露、內部工作語氣改正式文案。
+- 新增 `/privacy` 隱私權頁、robots.txt、sitemap.xml、GSC 驗證檔；字型子集化 9.1MB→300KB（`scripts/subset-font.py`）、OG 圖 2.5MB→144KB。
+- 待補（等園方）：收費明細、招生年齡對照、師資、菜單、行事曆、文件下載。
