@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site-data";
 import { SentenceText } from "@/components/sentence-text";
 
@@ -27,7 +28,7 @@ export function SiteFooter() {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} {site.fullName}</span>
-        <span>立案、收費及服務內容以園方最新公告為準</span>
+        <span>立案、收費及服務內容以園方最新公告為準｜<Link href="/privacy">隱私權說明</Link></span>
       </div>
     </footer>
   );

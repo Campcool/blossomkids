@@ -37,7 +37,7 @@ export default function AboutPage() {
 
         <section className="section public-section toy-section toy-shapes" id="public-info">
           <div className="container">
-            <SectionHeading eyebrow="PUBLIC INFORMATION" title="資料逐項公開｜選擇更有依據" description="目前參考幼園通公開索引；上線前以立案證書與主管機關資料覆核。" />
+            <SectionHeading eyebrow="PUBLIC INFORMATION" title="資料逐項公開｜選擇更有依據" description="園所立案與基本資料逐項公開，並依主管機關最新公告持續更新。" />
             <div className="public-info-layout">
               <dl className="data-table">
                 <div><dt>園所全名</dt><dd>{site.fullName}</dd></div>
@@ -51,9 +51,8 @@ export default function AboutPage() {
                 <div><dt>師生比／現有招生</dt><dd><StatusBadge>待園方提供</StatusBadge></dd></div>
                 <div><dt>保險資訊</dt><dd><StatusBadge>待園方提供</StatusBadge></dd></div>
                 <div><dt>收退費辦法</dt><dd><StatusBadge>待園方提供</StatusBadge></dd></div>
-                <div><dt>裁罰與改善說明</dt><dd><StatusBadge>待主管機關資料核對</StatusBadge></dd></div>
-              </dl>
-              <aside className="source-note"><span>資料來源與狀態</span><h3>公開索引不是正式招生簡章</h3><p>參考頁顯示 114 學年度月費 11,000 元、裁罰紀錄 1 筆。上線前應查核處分日期、原因與改善結果，並由園方確認呈現方式。</p><a className="text-link" href={site.referenceHref} target="_blank" rel="noreferrer">查看參考頁 ↗</a></aside>
+                              </dl>
+              <aside className="source-note"><span>資料說明</span><h3>以園方正式文件為準</h3><p>本頁資料依立案證書與主管機關公告陸續核對更新；招生名額、收費與服務內容以園方最新公告為準，歡迎來電洽詢。</p></aside>
             </div>
           </div>
         </section>

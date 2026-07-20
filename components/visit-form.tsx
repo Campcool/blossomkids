@@ -139,7 +139,7 @@ export function VisitForm() {
       </label>
       <label className="consent-field">
         <input type="checkbox" required />
-        <span>我同意園方僅為回覆本次預約而使用以上資料，並已閱讀隱私權說明。 *</span>
+        <span>我同意園方僅為回覆本次預約而使用以上資料，並已閱讀<a href="/privacy" target="_blank" rel="noreferrer">隱私權說明</a>。 *</span>
       </label>
       <button className="button" type="submit">整理預約訊息</button>
       <p className="form-note">送出後不會自動傳送資料：網站會替您整理成一則訊息並複製，加園長 LINE 貼上即可，也可用電話或簡訊聯絡。</p>

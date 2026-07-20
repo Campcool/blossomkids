@@ -28,17 +28,17 @@ const ageGroups = [
     name: "中班",
     age: "4–5 歲",
     focus: "透過教具操作、感官比較與合作任務，發現規律並解決問題。",
-    activities: ["蒙氏教具", "感官探索", "合作任務"],
+    activities: ["啟蒙教具", "感官探索", "合作任務"],
     image: "/images/curriculum/middle-material-exploration.png",
-    alt: "中班孩子合作操作粉紅塔、長度木塊與幾何教具",
+    alt: "中班孩子合作操作啟蒙教具與幾何教具",
   },
   {
     name: "大班",
     age: "5–6 歲",
-    focus: "用遊戲接觸ㄅㄆㄇ、ABC、圖像配對與任務規劃，從容銜接小學。",
-    activities: ["ㄅㄆㄇ", "ABC", "入小準備"],
+    focus: "透過生活遊戲、圖像配對與任務規劃，練習專注、表達與自理，從容銜接小學生活。",
+    activities: ["生活遊戲", "圖像配對", "入小準備"],
     image: "/images/curriculum/senior-literacy-play.png",
-    alt: "大班孩子操作木製 ABC、沙盤筆畫與圖像配對卡",
+    alt: "大班孩子操作圖像配對卡與啟蒙教具",
   },
 ];
 

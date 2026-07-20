@@ -200,7 +200,7 @@ export default function Home() {
             <div><dt>園所全名</dt><dd>{site.fullName}</dd></div>
             <div><dt>園所地址</dt><dd><a className="inline-map-link" href={site.mapsHref} target="_blank" rel="noreferrer"><span className="location-pin" aria-hidden="true" /><span>{site.address}<small>{site.locationLandmark}｜{site.locationRoadNote}</small></span></a></dd></div>
             <div><dt>招生電話</dt><dd>{site.phoneDisplay}</dd></div>
-            <div><dt>資料狀態</dt><dd><StatusBadge>正式上線前核對</StatusBadge></dd></div>
+            <div><dt>資料狀態</dt><dd><StatusBadge>依園方公告持續更新</StatusBadge></dd></div>
           </dl>
         </div>
       </section>
@@ -212,7 +212,7 @@ export default function Home() {
             <details><summary>目前可以預約參觀嗎？</summary><p>可以。歡迎來電預約，或使用線上表單整理需求後，加園長 LINE 傳送，也可用簡訊聯絡。</p></details>
             <details><summary>幼兒園招收哪些年齡？</summary><p>幼幼班、小班、中班與大班的名額、出生年月對照，將依每學年度核定招生簡章補上。</p></details>
             <details><summary>安親班有提供接送嗎？</summary><p>接送學校、方式與範圍待園方確認；確認後會連同交接流程與費用公開。</p></details>
-            <details><summary>收費與退費怎麼計算？</summary><p>114 學年度公開索引顯示每月 11,000 元，仍須由園方核對其涵蓋項目；正式資訊會依最新學年度完整揭露。</p></details>
+            <details><summary>收費與退費怎麼計算？</summary><p>收費項目與退費辦法依最新學年度公告為準；歡迎來電或加園長 LINE 索取正式收費說明。</p></details>
           </div>
         </div>
       </section>
