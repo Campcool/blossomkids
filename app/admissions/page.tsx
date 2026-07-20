@@ -71,12 +71,12 @@ export default function AdmissionsPage() {
           <div className="container form-layout">
             <div>
               <p className="eyebrow">BOOK A VISIT</p><h2>預約參觀</h2>
-              <p>目前表單僅供操作預覽，不會傳送個資；正式通知管道待園方提供。</p>
+              <p>填好表單後，網站會替您整理成一則預約訊息並複製，加園長 LINE 貼上傳送即可；資料不會自動上傳或儲存。</p>
               <div className="contact-card"><span>也可以直接來電</span><a href={site.phoneHref}>{site.phoneDisplay}</a><a className="inline-map-link" href={site.mapsHref} target="_blank" rel="noreferrer"><span className="location-pin" aria-hidden="true" /><span>{site.address}<small>{site.locationLandmark}｜{site.locationRoadNote}</small></span></a></div>
               <div className="line-contact-card" id="line-contact">
                 <span className="line-pill">LINE</span>
-                <div><strong>先查看園所 LINE 熱點</strong><p>官方帳號聊天連結尚待園方提供，取得後即可直接替換。</p></div>
-                <a href={site.lineHref} target="_blank" rel="noreferrer">開啟 LINE ↗</a>
+                <div><strong>加園長 LINE 直接詢問</strong><p>LINE ID：{site.lineId}。加入好友後可直接與園長聯繫，也可把預約表單整理好的訊息貼上傳送。</p></div>
+                <a href={site.lineHref} target="_blank" rel="noreferrer">加 LINE 好友 ↗</a>
               </div>
             </div>
             <VisitForm />

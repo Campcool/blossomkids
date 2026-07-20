@@ -61,7 +61,7 @@ export default function Home() {
               <a className="button button-call button-with-icon" href={site.phoneHref}><ContactIcon type="phone" />立即致電</a>
             </div>
             <div className="hero-contact">
-              <a href={site.lineHref} target="_blank" rel="noreferrer"><b>LINE</b> 查看園所熱點 <span aria-hidden="true">↗</span></a>
+              <a href={site.lineHref} target="_blank" rel="noreferrer"><b>LINE</b> 加好友直接詢問 <span aria-hidden="true">↗</span></a>
               <Link href="/campus">看真實校園紀錄 <span aria-hidden="true">→</span></Link>
             </div>
           </div>
@@ -209,7 +209,7 @@ export default function Home() {
         <div className="container faq-layout">
           <div><p className="eyebrow">QUICK ANSWERS</p><h2>常見問題</h2></div>
           <div className="faq-list">
-            <details><summary>目前可以預約參觀嗎？</summary><p>目前可直接來電預約；線上表單待園方提供接收管道後開放正式送出。</p></details>
+            <details><summary>目前可以預約參觀嗎？</summary><p>可以。歡迎來電預約，或使用線上表單整理需求後，加園長 LINE 傳送，也可用簡訊聯絡。</p></details>
             <details><summary>幼兒園招收哪些年齡？</summary><p>幼幼班、小班、中班與大班的名額、出生年月對照，將依每學年度核定招生簡章補上。</p></details>
             <details><summary>安親班有提供接送嗎？</summary><p>接送學校、方式與範圍待園方確認；確認後會連同交接流程與費用公開。</p></details>
             <details><summary>收費與退費怎麼計算？</summary><p>114 學年度公開索引顯示每月 11,000 元，仍須由園方核對其涵蓋項目；正式資訊會依最新學年度完整揭露。</p></details>

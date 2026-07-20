@@ -339,6 +339,8 @@ p { color: var(--muted); }
 .form-note { margin: 12px 0 0; font-size: .73rem; }
 .form-success { min-height: 430px; padding: 50px; background: var(--paper); box-shadow: var(--shadow); text-align: center; }
 .form-success > span { display: grid; width: 54px; height: 54px; margin: 30px auto; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 1.4rem; }
+.composed-message { width: 100%; margin: 14px 0 18px; padding: 14px 16px; border: 1px solid rgba(0, 0, 0, .12); border-radius: 12px; background: #fffdf7; font: inherit; font-size: .92rem; line-height: 1.6; text-align: left; resize: vertical; }
+.form-success .button-row { justify-content: center; }
 .text-button { cursor: pointer; border: 0; background: transparent; color: var(--green); font-weight: 800; text-decoration: underline; }
 
 /* Parents */
@@ -2714,7 +2716,7 @@ h3,
 /* 2026-07 childlike headline typography — Iansui, an OFL Traditional Chinese handwriting font. */
 @font-face {
   font-family: "Iansui";
-  src: url("/fonts/Iansui-Regular.ttf") format("truetype");
+  src: url("/fonts/Iansui-subset.woff2") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 400;

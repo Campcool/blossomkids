@@ -11,8 +11,15 @@ export const site = {
     "https://maps.google.com/?q=%E6%96%B0%E5%8C%97%E5%B8%82%E7%A7%81%E7%AB%8B%E8%8F%AF%E5%85%92%E5%9C%92%E7%B2%BE%E7%B7%BB%E5%B9%BC%E5%85%92%E5%9C%92",
   mapsEmbedHref:
     "https://www.google.com/maps?q=%E6%96%B0%E5%8C%97%E5%B8%82%E4%B8%89%E9%87%8D%E5%8D%80%E4%B8%89%E5%92%8C%E8%B7%AF%E4%BA%8C%E6%AE%B575%E8%99%9F2%E6%A8%93&hl=zh-TW&z=17&output=embed",
-  lineHref: "https://spot.line.me/detail/486254985571471384",
-  lineLabel: "LINE 熱點",
+  // 園長個人 LINE（業主 2026-07-20 提供）：以 ID 加好友後傳訊息
+  lineId: "18250021",
+  lineHref: "https://line.me/ti/p/~18250021",
+  lineLabel: "加 LINE 好友",
+  lineSpotHref: "https://spot.line.me/detail/486254985571471384",
+  // 園方申請 LINE 官方帳號後填入 @ID（例如 "@abc1234"）：
+  // 預約表單會自動改為開啟 LINE 聊天視窗並預填訊息（line.me/R/oaMessage）。
+  // ⚠️ 只能填華兒園自己的官方帳號，不可借用其他品牌的 LINE。
+  lineOaId: "",
   referenceHref:
     "https://www.kindyinfo.com/preschool/0db65dc5-d4a2-50b8-b6f8-b391bb664279",
 };

@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     description: "兩歲專班、幼兒園、國小課後照顧。日程、環境、費用，一頁看清楚。",
     type: "website",
     locale: "zh_TW",
-    images: [{ url: "/og-v3.png", width: 1664, height: 936, alt: "華兒園｜好好玩 慢慢長" }],
+    images: [{ url: "/og-v3.jpg", width: 1200, height: 685, alt: "華兒園｜好好玩 慢慢長" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "華兒園｜好好玩 慢慢長",
     description: "兩歲專班、幼兒園、國小課後照顧。日程、環境、費用，一頁看清楚。",
-    images: ["/og-v3.png"],
+    images: ["/og-v3.jpg"],
   },
 };
 
@@ -36,6 +36,8 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Preschool",
   name: site.fullName,
+  alternateName: site.shortName,
+  url: "https://blossomkids.tw",
   telephone: site.phoneDisplay,
   address: {
     "@type": "PostalAddress",

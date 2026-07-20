@@ -9,9 +9,9 @@ export function ContactDock() {
         <ContactIcon type="phone" className="dock-symbol" />
         <span className="dock-copy"><small>招生專線</small><strong>立即致電</strong></span>
       </a>
-      <a className="dock-action dock-line" href={site.lineHref} target="_blank" rel="noreferrer" aria-label="開啟華兒園 LINE 熱點">
+      <a className="dock-action dock-line" href={site.lineHref} target="_blank" rel="noreferrer" aria-label="加入華兒園 LINE 好友">
         <ContactIcon type="line" className="dock-symbol" />
-        <span className="dock-copy"><small>線上聯絡</small><strong>LINE 熱點</strong></span>
+        <span className="dock-copy"><small>線上聯絡</small><strong>加 LINE 好友</strong></span>
       </a>
       <Link className="dock-action dock-visit" href="/admissions#visit-form">
         <ContactIcon type="visit" className="dock-symbol" />
