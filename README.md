@@ -26,13 +26,20 @@
 
 ## 技術架構
 
-- Next.js 16
+- Next.js 16（正式站以 `output: "export"` 產出純靜態檔）
 - React 19
 - TypeScript
-- vinext／Vite
-- Cloudflare Worker 執行環境
-- OpenAI Sites 發布流程
-- Iansui 芫荽手寫字體，作為童趣塗鴉標題字
+- vinext／Vite（僅供本機開發與 chatgpt.site 預覽；正式站不使用）
+- Iansui 芫荽手寫字體，子集化為 woff2 作為童趣塗鴉標題字
+
+> `worker/`、`db/`、`drizzle/`、`examples/`、`.openai/hosting.json` 是原 starter 模板留下的 Cloudflare／Sites 檔案，**正式站（GitHub Pages 靜態輸出）完全不使用**。`tsconfig.json` 已將它們排除於 `next build` 型別檢查外，請勿在正式頁面 import 這些模組（會引入 `cloudflare:workers` 等靜態站不支援的相依）。
+
+### 部署管線（重要）
+
+- push `main` → `.github/workflows/deploy-pages.yml` 以 `STATIC_EXPORT=1 npx next build` 產出 `out/` → 部署 GitHub Pages。**push 即自動更新正式站，不需另外操作。**
+- `next.config.ts` 只在 `STATIC_EXPORT=1` 時啟用 `output: export` 與 `images.unoptimized`；本機 `npm run dev`／vinext 預覽行為不受影響。
+- `public/CNAME`（=`blossomkids.tw`）會隨 build 進入 `out/`；與 repo 根目錄 `CNAME` 保持一致。
+- `.github/workflows/site-check.yml`（手動觸發）可從 GitHub 主機實測正式站，回報供應者、畢業照檔名、GSC 驗證檔與圖片狀態，用來確認 DNS 有無被改走。
 
 常用指令：
 
@@ -51,14 +58,20 @@ Node.js 需求：`>=22.13.0`。
 ```text
 app/                         各頁面與全站樣式
 components/                  共用頁首、頁尾、圖卡與聯絡元件
-lib/site-data.ts             園所電話、地址、地圖、LINE 等共用資料
+lib/site-data.ts             園所電話、地址、地圖、LINE 等共用資料（單一來源）
 public/images/               網站照片與課程插圖
-public/images/toys/cutouts/  快速分頁的蒙特梭利／七巧板圖示
-public/fonts/                Iansui 字體與授權
+public/images/toys/cutouts/  快速分頁用的啟蒙教具／七巧板去背圖示
+public/fonts/                Iansui-subset.woff2（子集化標題字型）與 OFL 授權
+fonts-src/                   Iansui-Regular.ttf 原始字型（不隨網站發布，供重跑子集用）
+scripts/subset-font.py       重新產生字型子集（新增頁面文案後須執行，見下）
 tests/                       頁面內容與版面規則測試
-worker/                      Cloudflare Worker 入口
-.openai/hosting.json         Sites 專案連結設定
+.github/workflows/           deploy-pages.yml（正式部署）、site-check.yml（線上實測）
+worker/ db/ drizzle/ examples/  starter 模板遺留，正式站不使用（已排除於型別檢查）
 ```
+
+### 字型子集維護
+
+標題手寫字型只嵌入網站實際用到的字元（約 300KB，原始 TTF 約 9MB）。**新增或大改頁面中文文案後，必須執行 `python3 scripts/subset-font.py` 重新產生 `public/fonts/Iansui-subset.woff2`**，否則新字會退回系統字型顯示。需求：`pip install fonttools brotli`。
 
 主要頁面：
 
@@ -95,7 +108,12 @@ worker/                      Cloudflare Worker 入口
 
 `lib/site-data.ts` 是共用資料的單一來源。不要在多個元件中各自寫死電話或地址。
 
-目前的 LINE 連結是園所 LINE 熱點，不一定是正式官方帳號聊天連結；取得園方正式連結後，應集中更新 `lib/site-data.ts`。
+### LINE 聯絡與預約表單機制（2026-07-20）
+
+- 目前全站 LINE 入口＝**園長個人 LINE**，ID `18250021`（`site.lineId`／`site.lineHref = https://line.me/ti/p/~18250021`）。
+- 預約表單（`components/visit-form.tsx`）送出後不會自動上傳任何資料：在瀏覽器把欄位組成一則訊息並自動複製，家長再以「加園長 LINE 貼上／致電／簡訊」其一送出。
+- **升級路徑**：園方若申請 LINE 官方帳號，只要在 `site.lineOaId` 填入 `@ID`，表單會自動改為直接開啟 LINE 聊天視窗並預填訊息（`line.me/R/oaMessage`），無需改其他程式。
+- ⚠️ `site.lineId` 只能是華兒園自己的 LINE，不可借用其他事業的帳號。
 
 ## 內容狀態與注意事項
 
@@ -153,10 +171,10 @@ Codex、Claude 或其他 AI 接手時，請依序進行：
 4. 保留使用者既有修改，不可用重設或覆寫方式清除不相關變更。
 5. 修改文字時全面檢查中文斷句、標點、層級與行動裝置顯示。
 6. 修改圖示或圖片時，保持去背、視覺一致與替代文字完整。
-7. 執行 `npm run build`、`npm test`，並依變更範圍執行 lint 或瀏覽器檢查。
-8. 發布前確認桌機與行動裝置版面、電話／LINE／地圖連結及 favicon。
-9. GitHub 與 Sites 是兩個不同的發布面：更新 GitHub 不會自動更新正式網站。
-10. 只有在使用者明確要求發布時，才建立新版 Sites 部署或調整 DNS。
+7. 修改文案後若動到新中文字元，執行 `python3 scripts/subset-font.py` 重產字型子集。
+8. 執行 `npm run build`、`npm test`，並依變更範圍執行 lint 或瀏覽器檢查。
+9. 提交前確認桌機與行動裝置版面、電話／LINE／地圖連結及 favicon。
+10. **push `main` 即自動部署正式站**（GitHub Pages）；不需、也不應手動改 DNS 或綁定 chatgpt.site／OpenAI Sites。部署後可手動觸發 `site-check.yml` 確認線上內容。
 
 ## 完成條件
 
@@ -189,17 +207,35 @@ AI 完成一輪工作後，請留下簡短紀錄：
 - （填寫）
 ```
 
+## 待辦與下一步（2026-07-20）
+
+### 🔑 只有業主／園方能做（AI 勿代做，可提醒）
+- [ ] **Google 商家檔案**（最高優先）：business.google.com 建立「華兒園精緻幼兒園」，地址驗證後填營業時間與環境照。對「三重 幼兒園／安親班」在地搜尋效益最大，比官網 SEO 更快見效。
+- [ ] **真實園所照片**：教室、遊戲區、活動實拍取代目前示意圖與 placeholder；有孩子入鏡須家長書面授權，AI 可協助眼部打碼。
+- [ ] **LINE 官方帳號**（可選）：申請後把 `@ID` 交給 AI 填入 `site.lineOaId`，表單即升級為預填模式。
+- [ ] 園方補齊：收費明細、招生年齡／出生年月對照、師資姓名資歷、每週菜單、學期行事曆、常用文件、立案字號、核定人數與負責人核對。
+- [ ] Google Search Console：已驗證所有權並提交 sitemap；後續請求首頁建立索引、觀察索引涵蓋率。
+
+### 🟠 AI 可做（等業主決定或有素材後）
+- [ ] **隱藏空白區塊（待業主點頭）**：目前多頁有整片「待補／待確認」灰標，滿版 placeholder 可能傷害家長信任。建議暫時隱藏無真實內容的區塊，讓上線版看起來完整，待資料到位再逐區打開。
+- [ ] 結構化資料加強：`Preschool` schema 補營業時間、地理座標、服務區域、priceRange（部分需園方確認）。
+- [ ] 收到園方資料後，逐項填入並移除對應 `StatusBadge` 待補標示；動到中文文案記得重跑字型子集。
+
+### ⚠️ 絕不可做
+- 把 `blossomkids.tw` 綁回 OpenAI Sites／chatgpt.site 或改走 DNS（見「正式託管與網域」段，2026-07-20 曾因此出事）。
+- 讓未去識別的兒童照片出現在任何公開位置（正式站、預覽站或 repo）。
+
 ---
 
-最後更新：2026-07-20，由 Codex 依目前正式網站、GitHub 與網域狀態整理。
-
+最後更新：2026-07-20，由 Claude 依 GitHub Pages 正式託管、預約表單、合規與 SEO 現況整理（更正 Codex 原稿中「正式站為 Sites」等已過時描述）。
 
 ## 變更紀錄（新條目加在最上面）
 
 ### 2026-07-20（Claude）
-- 建立 GitHub Pages 部署管線（STATIC_EXPORT 條件式靜態輸出，vinext 預覽不受影響）；綁定 blossomkids.tw。
+- 建立 GitHub Pages 部署管線（STATIC_EXPORT 條件式靜態輸出，vinext 預覽不受影響）；綁定 blossomkids.tw，Source 設為 GitHub Actions。
 - 預約表單正式可用：組訊息＋自動複製，提供園長 LINE（ID 18250021，`lib/site-data.ts`）／致電／簡訊三管道；日後填 `lineOaId` 自動升級官方帳號預填。
 - 畢業照 13 位孩童眼部遮蔽（改名 `graduation-30-masked.jpg`）；未遮蔽原圖不得再進公開 repo。
 - 文案合規：大班移除ㄅㄆㄇ/ABC、「蒙氏」改「啟蒙」、裁罰資訊依業主指示不揭露、內部工作語氣改正式文案。
 - 新增 `/privacy` 隱私權頁、robots.txt、sitemap.xml、GSC 驗證檔；字型子集化 9.1MB→300KB（`scripts/subset-font.py`）、OG 圖 2.5MB→144KB。
-- 待補（等園方）：收費明細、招生年齡對照、師資、菜單、行事曆、文件下載。
+- 網域事件：OpenAI Sites 曾透過 Domain Connect 改走 DNS，已恢復並刪除相關 TXT 認領記錄（見「正式託管與網域」段）。
+- 同步測試 `tests/rendered-html.test.mjs` 至新狀態（打碼圖名、og-v3.jpg、大班文案、woff2 字型、園長 LINE）；`npm test` 3/3 通過。

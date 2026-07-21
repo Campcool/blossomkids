@@ -22,9 +22,9 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /預約參觀/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /hero-learning-space\.jpg/);
-  assert.match(html, /graduation-30\.jpg/);
+  assert.match(html, /graduation-30-masked\.jpg/);
   assert.match(html, /tel:\+886229761536/);
-  assert.match(html, /spot\.line\.me\/detail\/486254985571471384/);
+  assert.match(html, /line\.me\/ti\/p\/~18250021/);
   assert.match(html, /新北市三重區三和路二段75號2樓/);
   assert.match(html, /maps\.google\.com/);
   assert.match(html, /三和夜市口旁/);
@@ -44,7 +44,7 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /兩歲專班、幼兒園、國小課後照顧。<\/span><span>日程、環境、費用，一頁看清楚。/);
   assert.match(html, /toys\/cutouts\/pink-tower\.png/);
   assert.match(html, /HUAERYUAN · DAILY NOTE/);
-  assert.match(html, /og-v3\.png/);
+  assert.match(html, /og-v3\.jpg/);
   assert.match(html, /rel="icon"[^>]+favicon-tangram-bird-v3\.png\?v=3/);
   assert.equal((html.match(/class="play-map"/g) ?? []).length, 1);
   assert.match(html, /footer-contact-panel/);
@@ -83,7 +83,9 @@ test("renders all primary information pages", async () => {
     if (path === "/preschool") {
       assert.match(html, /curriculum\/toddler-motor-play\.png/);
       assert.match(html, /大肌肉遊戲/);
-      assert.match(html, /ㄅㄆㄇ/);
+      assert.match(html, /入小準備/);
+      // 合規：幼兒園頁不得出現注音／分科外語教學宣傳字樣
+      assert.doesNotMatch(html, /ㄅㄆㄇ|ABC/);
       assert.doesNotMatch(html, /<article class="age-card"[^>]*>\s*<span>0[1-4]<\/span>/);
     }
   }
@@ -93,6 +95,8 @@ test("bundles the Traditional Chinese handwriting headline font", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /@font-face\s*{[^}]*font-family:\s*"Iansui"/s);
   assert.match(css, /h1,[\s\S]*h2,[\s\S]*h3,[\s\S]*font-family:\s*"Iansui"/);
-  const font = await stat(new URL("../public/fonts/Iansui-Regular.ttf", import.meta.url));
-  assert.ok(font.size > 1_000_000);
+  assert.match(css, /Iansui-subset\.woff2/);
+  const font = await stat(new URL("../public/fonts/Iansui-subset.woff2", import.meta.url));
+  // 子集化後的標題字型：不應為 0，也不應大到未子集（原始 TTF 約 9MB）
+  assert.ok(font.size > 10_000 && font.size < 2_000_000);
 });
