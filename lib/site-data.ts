@@ -7,6 +7,14 @@ export const site = {
   address: "新北市三重區三和路二段75號2樓",
   locationLandmark: "三和夜市口旁",
   locationRoadNote: "位於三重三和路主要幹道",
+  establishedRoc: "民國 94 年 5 月 27 日",
+  establishedYear: "2005",
+  permitDocumentNumber: "北府社兒字第 0940414284 號",
+  floor: "2 樓",
+  indoorArea: "218.07 平方公尺",
+  preschoolCapacity: "48 人",
+  afterSchoolCapacity: "13 人",
+  totalCapacity: "61 人",
   mapsHref:
     "https://maps.google.com/?q=%E6%96%B0%E5%8C%97%E5%B8%82%E7%A7%81%E7%AB%8B%E8%8F%AF%E5%85%92%E5%9C%92%E7%B2%BE%E7%B7%BB%E5%B9%BC%E5%85%92%E5%9C%92",
   mapsEmbedHref:
@@ -34,10 +42,10 @@ export const navigation = [
 ];
 
 export const schoolFacts = [
-  { label: "設立別", value: "私立" },
-  { label: "所在地", value: "新北市三重區" },
-  { label: "核定人數", value: "61 人" },
-  { label: "專用車輛", value: "0 輛" },
+  { label: "正式設立", value: "民國 94 年" },
+  { label: "幼兒園核定", value: "48 人" },
+  { label: "課後照顧核定", value: "13 人" },
+  { label: "室內空間", value: "218.07 m²" },
 ];
 
 export const pendingLabel = "內容待園方補充";

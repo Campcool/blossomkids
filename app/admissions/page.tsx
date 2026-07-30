@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "招生資訊與預約參觀", descri
 export default function AdmissionsPage() {
   return (
     <>
-      <PageHero eyebrow="ADMISSIONS & VISIT" title="實際看看｜再做打算" description="華兒園誠摯邀請您帶小寶貝一同參觀；招生年齡、名額、費用與流程也集中在這一頁。" note="收費與名額依學年度公告為準，歡迎來電或加園長 LINE 洽詢最新資訊。" />
+      <PageHero eyebrow="ADMISSIONS & VISIT" title="實際看看｜再做打算" description="華兒園誠摯邀請您帶小寶貝一同參觀；招生年齡、名額、費用與流程也集中在這一頁。" note="收費與名額依學年度公告為準；實際金額以現場詢問為主，歡迎來電或加園長 LINE 洽詢最新資訊。" />
       <div id="page-content">
         <section className="section journey-section toy-section toy-stair">
           <div className="container">
@@ -42,10 +42,10 @@ export default function AdmissionsPage() {
           <div className="container fees-layout">
             <div><p className="eyebrow">FEES & POLICIES</p><h2>收費逐項清楚<br />預算安排踏實</h2><p className="large-copy">逐項列出註冊、月費、代辦、延托、交通、餐費、補助與退費規則。</p></div>
             <div className="fee-card">
-              <div className="fee-card-head"><span>114 學年度參考</span><StatusBadge>以園方最新公告為準</StatusBadge></div>
-              <strong>NT$ 11,000 <small>／月</small></strong>
-              <p>參考金額；實際涵蓋項目與最新學年度收費，請以園方公告與現場說明為準。</p>
-              <dl><div><dt>註冊費</dt><dd>待補</dd></div><div><dt>月費涵蓋</dt><dd>待補</dd></div><div><dt>代辦費</dt><dd>待補</dd></div><div><dt>延托／安親</dt><dd>待補</dd></div><div><dt>補助方式</dt><dd>待補</dd></div><div><dt>退費辦法</dt><dd>待補</dd></div></dl>
+              <div className="fee-card-head"><span>115 學年度資料狀態</span><StatusBadge>正式版本確認中</StatusBadge></div>
+              <strong>以現場詢問為主</strong>
+              <p>園方已提供暫行收費資料，但部分合計仍需確認。為避免家長依未定金額安排預算，網站暫不刊登精確數字；實際金額請以現場詢問及園方最新正式文件為準。</p>
+              <dl><div><dt>學期收費</dt><dd>學費</dd></div><div><dt>每月收費</dt><dd>雜費</dd></div><div><dt>代辦項目</dt><dd>材料・活動・午餐・點心</dd></div><div><dt>入學用品</dt><dd>依班別與實際需求</dd></div><div><dt>延托／課後照顧</dt><dd>另向園方確認</dd></div><div><dt>退費辦法</dt><dd>依正式公告辦理</dd></div></dl>
             </div>
           </div>
           <div className="container subsidy-block">
@@ -55,9 +55,9 @@ export default function AdmissionsPage() {
             </div>
             <div className="subsidy-table">
               <div className="subsidy-head"><span>胎次</span><span>中央政策參考金額</span><span>說明</span></div>
-              <div><strong>第一胎</strong><b>每月 5,000 元</b><span>補助直接折抵每月學費</span></div>
-              <div><strong>第二胎</strong><b>每月 6,000 元</b><span>補助直接折抵每月學費</span></div>
-              <div><strong>第三胎以上</strong><b>每月 7,000 元</b><span>補助直接折抵每月學費</span></div>
+              <div><strong>第一胎</strong><b>每月 5,000 元</b><span>資格與撥付方式依政府最新公告</span></div>
+              <div><strong>第二胎</strong><b>每月 6,000 元</b><span>資格與撥付方式依政府最新公告</span></div>
+              <div><strong>第三胎以上</strong><b>每月 7,000 元</b><span>資格與撥付方式依政府最新公告</span></div>
             </div>
             <div className="fee-review-note">
               <strong>補助資格與撥付方式</strong>

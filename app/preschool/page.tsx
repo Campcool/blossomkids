@@ -43,18 +43,23 @@ const ageGroups = [
 ];
 
 const schedule = [
-  { time: "07:30–09:00", title: "入園與晨間探索", note: "入園時間待確認", image: "/images/toys/cutouts/jigsaw.png" },
-  { time: "09:00–09:30", title: "晨圈與生活分享", note: "建立一天的節奏", image: "/images/toys/cutouts/rainbow.png" },
-  { time: "09:30–11:20", title: "主題／角落探索", note: "實際課程內容待補", image: "/images/toys/cutouts/pink-tower.png" },
-  { time: "11:20–14:20", title: "午餐、整理與午休", note: "菜單另於家長專區公開", image: "/images/toys/cutouts/color-tablets.png" },
-  { time: "14:20–16:00", title: "午後活動與點心", note: "肢體、藝術或班級活動", image: "/images/toys/cutouts/tangram-bird.png" },
-  { time: "16:00–18:00", title: "分享、自由探索與離園", note: "延托時段待確認", image: "/images/toys/cutouts/brown-stair.png" },
+  { time: "07:30–09:00", title: "幼兒入園與早餐", note: "晨間安頓，準備展開一天", image: "/images/toys/cutouts/jigsaw.png" },
+  { time: "09:00–10:00", title: "單元活動／學習區探索", note: "依班級課程與孩子興趣安排", image: "/images/toys/cutouts/pink-tower.png" },
+  { time: "10:00–11:30", title: "大肌肉活動", note: "依單元進度輪流使用滑梯室", image: "/images/toys/cutouts/rainbow.png" },
+  { time: "11:30–12:30", title: "補水與午餐", note: "11:30 補水，11:40 開始午餐", image: "/images/toys/cutouts/color-tablets.png" },
+  { time: "12:30–13:00", title: "午休前準備", note: "刷牙、整理與環境整潔", image: "/images/toys/cutouts/pink-tower.png" },
+  { time: "13:00–14:30", title: "午休時間", note: "三歲以上幼兒午休不超過 90 分鐘", image: "/images/toys/cutouts/brown-stair.png" },
+  { time: "14:30–15:00", title: "起床與自理", note: "整理寢具、穿衣與生活自理", image: "/images/toys/cutouts/tangram-bird.png" },
+  { time: "15:00–15:40", title: "點心時間", note: "補充體力，準備午後互動", image: "/images/toys/cutouts/color-tablets.png" },
+  { time: "15:40–16:30", title: "綜合時間", note: "小肌肉活動、分享互動與本土語", image: "/images/toys/cutouts/jigsaw.png" },
+  { time: "16:30–18:29", title: "整理書包與離園", note: "與家長安心交接一天", image: "/images/toys/cutouts/brown-stair.png" },
+  { time: "18:30 起", title: "延托時段", note: "延托安排請向園方確認", image: "/images/toys/cutouts/rainbow.png" },
 ];
 
 export default function PreschoolPage() {
   return (
     <>
-      <PageHero eyebrow="PRESCHOOL · 2–6" title="好好玩｜慢慢長" description="幼幼班到大班：班別、學習重點、一日作息與餐點資訊，都在這裡。" note="班別、作息與課程內容，將依園方教學計畫更新。" />
+      <PageHero eyebrow="PRESCHOOL · 2–6" title="好好玩｜慢慢長" description="幼幼班到大班：班別、學習重點、正式一日作息與餐點資訊，都在這裡。" note="活動時間會依幼童學習興趣微調；餐點與午休維持固定照顧節奏。" />
       <div id="page-content">
         <section className="section age-section toy-section toy-pink">
           <div className="container">
@@ -63,7 +68,7 @@ export default function PreschoolPage() {
               {ageGroups.map((group) => (
                 <article className="age-card" key={group.name}>
                   <figure className="age-card-visual">
-                    <Image src={group.image} alt={group.alt} fill sizes="(max-width: 780px) calc(100vw - 28px), (max-width: 1050px) 46vw, 22vw" />
+                    <Image src={group.image} alt={group.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 28px), (max-width: 1050px) 46vw, 22vw" />
                   </figure>
                   <div className="age-card-body">
                     <small className="age-label">{group.age}</small>
@@ -104,7 +109,7 @@ export default function PreschoolPage() {
               <span className="notebook-tape" aria-hidden="true" />
               <div className="notebook-heading">
                 <div><span>HUAERYUAN · DAY PLAN</span><strong>今天，也好好長大。</strong></div>
-                <em>示意作息</em>
+                <em>正式作息</em>
               </div>
               <ol className="daily-flow">
                 {schedule.map((item, index) => (
@@ -116,7 +121,7 @@ export default function PreschoolPage() {
                   </li>
                 ))}
               </ol>
-              <div className="notebook-footer"><span aria-hidden="true">✎</span> 各班實際時段將依園方作息表更新。</div>
+              <div className="notebook-footer"><span aria-hidden="true">✎</span> 依 115 學年度全園幼兒作息表整理；班級活動會依課程與幼兒狀況調整。</div>
               <span className="notebook-sticker" aria-hidden="true"><img src="/images/toys/cutouts/rainbow.png" alt="" /></span>
             </div>
           </div>
@@ -126,16 +131,15 @@ export default function PreschoolPage() {
           <div className="container meal-grid">
             <div>
               <p className="eyebrow">MEALS & CARE</p><h2>菜單看得懂<br />每一餐更安心</h2>
-              <p>每週列出點心、午餐、食材來源、過敏原與臨時異動；歷史菜單可按月份查詢。</p>
-              <StatusBadge>歷史餐點菜單待補</StatusBadge>
+              <p>115 學年度餐點輪流表逐日列出上午點心、午餐、湯品、水果與下午點心，家長能清楚掌握孩子每天吃什麼。</p>
+              <StatusBadge>115 學年度餐點輪流表已取得</StatusBadge>
             </div>
             <div className="menu-placeholder">
-              <span>本週菜單</span>
-              <div><b>一</b><p>上午點心／午餐／下午點心</p></div>
-              <div><b>二</b><p>上午點心／午餐／下午點心</p></div>
-              <div><b>三</b><p>上午點心／午餐／下午點心</p></div>
-              <div><b>四</b><p>上午點心／午餐／下午點心</p></div>
-              <div><b>五</b><p>上午點心／午餐／下午點心</p></div>
+              <span>餐點照顧原則</span>
+              <div><b>四類</b><p>每日涵蓋全穀雜糧、豆魚蛋肉、蔬菜與水果。</p></div>
+              <div><b>國產</b><p>肉類採用國產豬、牛肉，於三和早市採買。</p></div>
+              <div><b>間隔</b><p>點心與正餐供應時間至少間隔兩小時。</p></div>
+              <div><b>餐具</b><p>園方提供的不鏽鋼餐具組，方便清潔與日常使用。</p></div>
             </div>
           </div>
         </section>
