@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 type PageMapKey = "preschool" | "after-school" | "campus" | "admissions" | "parents" | "about";
 
@@ -16,11 +17,17 @@ const mapItems: Array<{ key: PageMapKey; href: string; label: string; meta: stri
 
 export function PlayfulPageMap() {
   const pathname = usePathname();
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const currentItem = trackRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
+    currentItem?.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+  }, [pathname]);
 
   return (
     <nav className="play-map" aria-label="網站分頁">
       <div className="play-map-inner">
-        <div className="play-map-track">
+        <div className="play-map-track" ref={trackRef}>
           {mapItems.map((item) => {
             const isCurrent = pathname === item.href;
             return (
