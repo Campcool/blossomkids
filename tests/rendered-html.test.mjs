@@ -23,6 +23,7 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /hero-learning-space\.jpg/);
   assert.match(html, /graduation-30-masked\.jpg/);
+  assert.match(html, /class="media-caption"/);
   assert.match(html, /tel:\+886229761536/);
   assert.match(html, /line\.me\/ti\/p\/~18250021/);
   assert.match(html, /新北市三重區三和路二段75號2樓/);
@@ -94,6 +95,8 @@ test("renders all primary information pages", async () => {
     }
     if (path === "/campus") {
       assert.match(html, /images\/campus\/bedding-storage\.png/);
+      assert.match(html, /class="media-caption"/);
+      assert.match(html, /media-caption-stacked/);
       assert.match(html, /室內面積/);
       assert.match(html, /218\.07 平方公尺/);
     }
@@ -111,4 +114,14 @@ test("bundles the Traditional Chinese handwriting headline font", async () => {
   const font = await stat(new URL("../public/fonts/Iansui-subset.woff2", import.meta.url));
   // 子集化後的標題字型：不應為 0，也不應大到未子集（原始 TTF 約 9MB）
   assert.ok(font.size > 10_000 && font.size < 2_000_000);
+});
+
+test("keeps shared readability and media-caption tokens documented", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const design = await readFile(new URL("../DESIGN.md", import.meta.url), "utf8");
+  assert.match(css, /--text-small:\s*\.875rem/);
+  assert.match(css, /--media-caption-size:\s*clamp\(/);
+  assert.match(css, /\.campus-real-photo \.media-caption/);
+  assert.match(design, /Never shrink navigation or meaningful copy/);
+  assert.match(design, /Tables keep readable text and scroll horizontally/);
 });

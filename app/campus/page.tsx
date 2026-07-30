@@ -29,7 +29,7 @@ export default function CampusPage() {
               {carePhotos.map((photo) => (
                 <figure className="campus-real-photo" key={photo.src}>
                   <Image src={photo.src} alt={photo.alt} fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
-                  <figcaption>{photo.caption}</figcaption>
+                  <figcaption className="media-caption">{photo.caption}</figcaption>
                 </figure>
               ))}
             </div>
@@ -69,7 +69,7 @@ export default function CampusPage() {
             <div className="yearbook-grid">
               <figure className="yearbook-real-photo">
                 <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮合照" fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 34vw" />
-                <figcaption><strong>第 30 屆畢業典禮</strong><span>學年度與活動日期待補</span></figcaption>
+                <figcaption className="media-caption media-caption-stacked"><strong>第 30 屆畢業典禮</strong><span>學年度與活動日期待補</span></figcaption>
               </figure>
               <PhotoSlot label="其他學年度" detail="畢業合照候補" />
               <PhotoSlot label="畢業回顧" detail="文章與照片候補" />

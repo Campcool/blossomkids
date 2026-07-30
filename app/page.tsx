@@ -76,7 +76,7 @@ export default function Home() {
                 priority
                 sizes="(max-width: 780px) calc(100vw - 30px), 54vw"
               />
-              <figcaption>品牌概念主視覺｜實際園所環境請見校園日常</figcaption>
+              <figcaption className="media-caption">品牌概念主視覺｜實際園所環境請見校園日常</figcaption>
             </figure>
             <div className="hero-stamp" aria-hidden="true"><span>AGES</span><strong>2–6</strong><small>＋課後照顧</small></div>
             <div className="hero-caption"><span>2005</span><div><strong>創立</strong><small>三重在地陪伴</small></div></div>
@@ -164,7 +164,7 @@ export default function Home() {
             <PhotoSlot label="閱讀與角落學習" />
             <figure className="home-campus-real">
               <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
-              <figcaption>第 30 屆畢業典禮紀錄</figcaption>
+              <figcaption className="media-caption">第 30 屆畢業典禮紀錄</figcaption>
             </figure>
           </div>
           <div className="section-link"><Link className="text-link" href="/campus">查看校園環境與安全資訊 <span aria-hidden="true">→</span></Link></div>
