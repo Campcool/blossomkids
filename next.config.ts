@@ -5,11 +5,11 @@ import type { NextConfig } from "next";
 const isStaticExport = process.env.STATIC_EXPORT === "1";
 
 const nextConfig: NextConfig = {
+  images: { unoptimized: true },
   ...(isStaticExport
     ? {
         output: "export" as const,
         // GitHub Pages 沒有影像最佳化伺服器，next/image 需直接輸出原圖
-        images: { unoptimized: true },
       }
     : {}),
 };

@@ -38,7 +38,10 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /華兒園誠摯邀請您帶小寶貝一同參觀。<\/span><span>親自感受教室、活動與每天的溫暖陪伴。/);
   assert.match(html, /從幼幼班到大班。<\/span><span>課程、作息、餐點與入學資訊，一次看懂。/);
   assert.match(html, /日程、環境、費用，是家長最常詢問的重點。<\/span><span>我們先整理好，讓您查看更輕鬆。/);
-  assert.match(html, /每個時段都有清楚安排。<\/span><span>實際作息將依各班狀況持續更新。/);
+  assert.match(html, /從 07:30 入園到離園與延托，每個時段都有清楚安排；課程活動會依孩子的學習興趣彈性調整。/);
+  assert.match(html, /民國 94 年/);
+  assert.match(html, /幼兒園核定<\/span><strong>48 人/);
+  assert.match(html, /課後照顧核定<\/span><strong>13 人/);
   assert.match(html, /每張照片都會附上用途說明。/);
   assert.match(html, /收退費及安全資訊，逐項核對、清楚公開。/);
   assert.match(html, /兩歲專班、幼兒園、國小課後照顧。<\/span><span>日程、環境、費用，一頁看清楚。/);
@@ -49,6 +52,7 @@ test("renders the complete preschool homepage", async () => {
   assert.equal((html.match(/class="play-map"/g) ?? []).length, 1);
   assert.match(html, /footer-contact-panel/);
   assert.match(html, /footer-invitation-map/);
+  assert.match(html, /內容維護中/);
   assert.match(html, /footer-contact-copy[\s\S]*major-section-title/);
   assert.match(html, /footer-contact-panel[\s\S]*footer-map-feature/);
   assert.doesNotMatch(html, /footer-action-grid/);
@@ -87,6 +91,14 @@ test("renders all primary information pages", async () => {
       // 合規：幼兒園頁不得出現注音／分科外語教學宣傳字樣
       assert.doesNotMatch(html, /ㄅㄆㄇ|ABC/);
       assert.doesNotMatch(html, /<article class="age-card"[^>]*>\s*<span>0[1-4]<\/span>/);
+    }
+    if (path === "/campus") {
+      assert.match(html, /images\/campus\/bedding-storage\.png/);
+      assert.match(html, /室內面積/);
+      assert.match(html, /218\.07 平方公尺/);
+    }
+    if (path === "/admissions") {
+      assert.match(html, /實際金額以現場詢問為主/);
     }
   }
 });

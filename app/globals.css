@@ -2822,3 +2822,205 @@ h3,
 .privacy-doc h2 { margin: 34px 0 10px; font-size: 1.35rem; }
 .privacy-doc p { margin: 0 0 14px; line-height: 1.8; }
 .privacy-updated { margin-top: 30px; color: rgba(0, 0, 0, .55); font-size: .9rem; }
+
+/* 2026-07 verified school information and parent resources. */
+.home-daily-flow { grid-template-columns: repeat(3, 1fr); gap: 22px 30px; }
+.home-daily-flow li:nth-child(3n)::after { display: none; }
+
+.belief-grid article:last-child {
+  min-height: 190px;
+  grid-column: 1 / -1;
+}
+
+.campus-gallery {
+  grid-template-rows: none;
+  grid-auto-rows: 260px;
+}
+.campus-real-photo {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  border-radius: 18px;
+  background: var(--cream);
+  box-shadow: 0 14px 36px rgba(25,55,46,.08);
+  overflow: hidden;
+}
+.campus-real-photo img { object-fit: cover; }
+.campus-real-photo figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 12px 14px;
+  background: rgba(18,53,44,.88);
+  color: white;
+  font-size: .72rem;
+  font-weight: 760;
+  line-height: 1.5;
+}
+
+.facility-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 24px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+  overflow: hidden;
+}
+.facility-facts > div { padding: 20px; border-right: 1px solid var(--line); }
+.facility-facts > div:last-child { border-right: 0; }
+.facility-facts dt { color: var(--muted); font-size: .72rem; }
+.facility-facts dd { margin: 8px 0 0; color: var(--ink-deep); font-weight: 850; line-height: 1.5; }
+
+.menu-controls span {
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.menu-table-scroll { overflow-x: auto; }
+.menu-preview {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  color: var(--ink-deep);
+}
+.menu-preview th,
+.menu-preview td {
+  padding: 16px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.menu-preview tr > *:last-child { border-right: 0; }
+.menu-preview thead th {
+  background: var(--cream);
+  color: var(--muted);
+  font-size: .72rem;
+  letter-spacing: .04em;
+}
+.menu-preview tbody th { width: 88px; color: var(--clay); font-size: .78rem; white-space: nowrap; }
+.menu-preview tbody td { font-size: .78rem; line-height: 1.65; }
+.menu-preview tbody td:nth-child(3) { width: 46%; }
+.fee-card > strong { font-size: clamp(2rem, 4vw, 3.4rem); }
+
+/* Honest, animated placeholder for content that the school is still preparing. */
+.maintenance-slot {
+  gap: 6px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 84% 16%, rgba(246, 194, 76, .22), transparent 27%),
+    linear-gradient(145deg, #edf3ee, #e2ebe4);
+}
+.maintenance-visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(150px, 58%);
+  margin-bottom: 4px;
+  place-items: center;
+}
+.maintenance-visual svg { display: block; width: 100%; overflow: visible; }
+.maintenance-ground,
+.maintenance-card,
+.maintenance-line,
+.maintenance-gear,
+.maintenance-tool {
+  fill: none;
+  stroke: #315f50;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.maintenance-ground { stroke-width: 2; opacity: .28; }
+.maintenance-card { fill: rgba(255,255,255,.72); stroke-width: 2; }
+.maintenance-line { stroke-width: 2; opacity: .38; }
+.maintenance-gear {
+  stroke: #a76448;
+  stroke-width: 2.3;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: maintenance-spin 8s linear infinite;
+}
+.maintenance-tool {
+  stroke: #315f50;
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: 75% 75%;
+  animation: maintenance-bob 2.4s ease-in-out infinite;
+}
+.maintenance-pulse {
+  position: absolute;
+  right: -10px;
+  bottom: 5px;
+  padding: 5px 9px;
+  border: 1px solid rgba(49,95,80,.18);
+  border-radius: 999px;
+  background: #fffefa;
+  color: #315f50;
+  font-size: .62rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  box-shadow: 0 7px 16px rgba(35,66,56,.1);
+  animation: maintenance-pulse 2.4s ease-in-out infinite;
+}
+.maintenance-label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 3px;
+  color: #6a7e75;
+  font-size: .62rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+.maintenance-label i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d49a34;
+  box-shadow: 0 0 0 0 rgba(212,154,52,.35);
+  animation: maintenance-dot 2.4s ease-out infinite;
+}
+
+@keyframes maintenance-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes maintenance-bob {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(5deg) translateY(-3px); }
+}
+@keyframes maintenance-pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes maintenance-dot {
+  0% { box-shadow: 0 0 0 0 rgba(212,154,52,.38); }
+  70%, 100% { box-shadow: 0 0 0 8px rgba(212,154,52,0); }
+}
+
+@media (max-width: 780px) {
+  .home-daily-flow { grid-template-columns: 1fr; }
+  .home-daily-flow li:nth-child(3n)::after { display: block; }
+  .home-daily-flow li:last-child::after { display: none; }
+  .facility-facts { grid-template-columns: repeat(2, 1fr); }
+  .campus-gallery { grid-template-rows: none; grid-auto-rows: 240px; }
+  .facility-facts > div:nth-child(2) { border-right: 0; }
+  .facility-facts > div:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .menu-controls { gap: 12px; align-items: center; text-align: center; }
+  .menu-controls span { display: none; }
+  .menu-meta { grid-template-columns: 1fr; }
+  .menu-meta span { border-right: 0; border-bottom: 1px solid var(--line); }
+  .menu-meta span:last-child { border-bottom: 0; }
+  .maintenance-visual { width: min(138px, 52%); }
+}
+
+@media (max-width: 420px) {
+  .facility-facts { grid-template-columns: 1fr; }
+  .facility-facts > div,
+  .facility-facts > div:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
+  .facility-facts > div:last-child { border-bottom: 0; }
+}

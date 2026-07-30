@@ -33,11 +33,12 @@ const parentQuestions = [
 ];
 
 const homeSchedule = [
-  { time: "08:00", title: "早安入園", note: "情緒安頓・自由探索", image: "/images/toys/cutouts/jigsaw.png" },
-  { time: "09:30", title: "主題探索", note: "依班級教學進度安排", image: "/images/toys/cutouts/pink-tower.png" },
-  { time: "11:30", title: "午餐時光", note: "用餐、整理與午休", image: "/images/toys/cutouts/color-tablets.png" },
-  { time: "14:30", title: "午後活動", note: "肢體・藝術・角落學習", image: "/images/toys/cutouts/tangram-bird.png" },
-  { time: "16:30", title: "分享離園", note: "整理一天・安心回家", image: "/images/toys/cutouts/brown-stair.png" },
+  { time: "07:30", title: "入園與早餐", note: "晨間安頓・準備一天", image: "/images/toys/cutouts/jigsaw.png" },
+  { time: "09:00", title: "單元與學習區", note: "依班級進度探索與操作", image: "/images/toys/cutouts/pink-tower.png" },
+  { time: "10:00", title: "大肌肉活動", note: "依單元輪流使用滑梯室", image: "/images/toys/cutouts/rainbow.png" },
+  { time: "11:40", title: "午餐與午休", note: "午休時段 13:00–14:30", image: "/images/toys/cutouts/color-tablets.png" },
+  { time: "15:00", title: "點心與綜合活動", note: "操作、分享互動與本土語", image: "/images/toys/cutouts/tangram-bird.png" },
+  { time: "16:30", title: "整理與離園", note: "18:30 後為延托時段", image: "/images/toys/cutouts/brown-stair.png" },
 ];
 
 const dailyRecords = [
@@ -71,13 +72,14 @@ export default function Home() {
                 src="/images/hero-learning-space.jpg"
                 alt="溫暖自然的幼兒學習空間概念主視覺，桌上有繪本、木積木、蠟筆與綠色植物"
                 fill
+                unoptimized
                 priority
                 sizes="(max-width: 780px) calc(100vw - 30px), 54vw"
               />
               <figcaption>品牌概念主視覺｜實際園所環境請見校園日常</figcaption>
             </figure>
             <div className="hero-stamp" aria-hidden="true"><span>AGES</span><strong>2–6</strong><small>＋課後照顧</small></div>
-            <div className="hero-caption"><span>30</span><div><strong>屆</strong><small>在地陪伴紀錄</small></div></div>
+            <div className="hero-caption"><span>2005</span><div><strong>創立</strong><small>三重在地陪伴</small></div></div>
           </div>
         </div>
       </section>
@@ -128,7 +130,7 @@ export default function Home() {
             <p className="eyebrow">A DAY AT HUA-ER-YUAN</p>
             <h2>晨間有問候<br />離園有分享</h2>
           </div>
-          <SentenceText text="從入園到離園，每個時段都有清楚安排。實際作息將依各班狀況持續更新。" />
+          <SentenceText text="依園方正式作息表，從 07:30 入園到離園與延托，每個時段都有清楚安排；課程活動會依孩子的學習興趣彈性調整。" />
         </div>
         <div className="container daily-notebook home-daily-notebook" aria-label="入園的一天流程">
           <span className="notebook-tape" aria-hidden="true" />
@@ -161,7 +163,7 @@ export default function Home() {
             <PhotoSlot label="教室全景" className="photo-wide" />
             <PhotoSlot label="閱讀與角落學習" />
             <figure className="home-campus-real">
-              <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
+              <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
               <figcaption>第 30 屆畢業典禮紀錄</figcaption>
             </figure>
           </div>
@@ -198,6 +200,9 @@ export default function Home() {
           </div>
           <dl className="public-preview">
             <div><dt>園所全名</dt><dd>{site.fullName}</dd></div>
+            <div><dt>正式設立</dt><dd>{site.establishedRoc}（西元 {site.establishedYear} 年）</dd></div>
+            <div><dt>核定招收</dt><dd>幼兒園 {site.preschoolCapacity}・課後照顧 {site.afterSchoolCapacity}</dd></div>
+            <div><dt>許可文號</dt><dd>{site.permitDocumentNumber}</dd></div>
             <div><dt>園所地址</dt><dd><a className="inline-map-link" href={site.mapsHref} target="_blank" rel="noreferrer"><span className="location-pin" aria-hidden="true" /><span>{site.address}<small>{site.locationLandmark}｜{site.locationRoadNote}</small></span></a></dd></div>
             <div><dt>招生電話</dt><dd>{site.phoneDisplay}</dd></div>
             <div><dt>資料狀態</dt><dd><StatusBadge>依園方公告持續更新</StatusBadge></dd></div>
@@ -212,7 +217,7 @@ export default function Home() {
             <details><summary>目前可以預約參觀嗎？</summary><p>可以。歡迎來電預約，或使用線上表單整理需求後，加園長 LINE 傳送，也可用簡訊聯絡。</p></details>
             <details><summary>幼兒園招收哪些年齡？</summary><p>幼幼班、小班、中班與大班的名額、出生年月對照，將依每學年度核定招生簡章補上。</p></details>
             <details><summary>安親班有提供接送嗎？</summary><p>接送學校、方式與範圍待園方確認；確認後會連同交接流程與費用公開。</p></details>
-            <details><summary>收費與退費怎麼計算？</summary><p>收費項目與退費辦法依最新學年度公告為準；歡迎來電或加園長 LINE 索取正式收費說明。</p></details>
+            <details><summary>收費與退費怎麼計算？</summary><p>115 學年度資料仍在確認正式版本，網站不先刊登未定金額；實際金額以現場詢問為主，歡迎來電或加園長 LINE 索取園方最新版收退費說明。</p></details>
           </div>
         </div>
       </section>
