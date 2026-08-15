@@ -2,10 +2,52 @@ name: Site Check
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'public/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.ts'
+      - 'vite.config.ts'
+      - 'tsconfig.json'
+      - '.github/workflows/site-check.yml'
+  push:
+    branches: [main]
 
 jobs:
-  check:
+  build-and-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    concurrency:
+      group: sitecheck-${{ github.head_ref || github.run_id }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Static export build
+        env:
+          STATIC_EXPORT: "1"
+        run: npx next build
+      - name: Full test suite
+        run: npm test
+
+  live-probe:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Probe live site
         run: |
