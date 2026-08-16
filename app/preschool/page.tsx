@@ -13,7 +13,7 @@ const ageGroups = [
     age: "2–3 歲",
     focus: "在安全依附中練習走、抓、穿、放，建立身體控制與生活自理。",
     activities: ["大肌肉遊戲", "小肌肉操作", "生活自理"],
-    image: "/images/curriculum/toddler-motor-play.png",
+    image: "/images/curriculum/toddler-motor-play.webp",
     alt: "幼幼班孩子走低階軟墊並串大木珠，進行大肌肉與小肌肉活動",
   },
   {
@@ -21,7 +21,7 @@ const ageGroups = [
     age: "3–4 歲",
     focus: "跟著節奏唱歌、跳舞與遊戲，練習表達、模仿和團體互動。",
     activities: ["音樂律動", "唱歌跳舞", "遊戲表達"],
-    image: "/images/curriculum/small-music-movement.png",
+    image: "/images/curriculum/small-music-movement.webp",
     alt: "小班孩子使用手鼓、沙鈴和彩帶唱歌跳舞",
   },
   {
@@ -29,7 +29,7 @@ const ageGroups = [
     age: "4–5 歲",
     focus: "透過教具操作、感官比較與合作任務，發現規律並解決問題。",
     activities: ["啟蒙教具", "感官探索", "合作任務"],
-    image: "/images/curriculum/middle-material-exploration.png",
+    image: "/images/curriculum/middle-material-exploration.webp",
     alt: "中班孩子合作操作啟蒙教具與幾何教具",
   },
   {
@@ -37,7 +37,7 @@ const ageGroups = [
     age: "5–6 歲",
     focus: "透過生活遊戲、圖像配對與任務規劃，練習專注、表達與自理，從容銜接小學生活。",
     activities: ["生活遊戲", "圖像配對", "入小準備"],
-    image: "/images/curriculum/senior-literacy-play.png",
+    image: "/images/curriculum/senior-literacy-play.webp",
     alt: "大班孩子操作圖像配對卡與啟蒙教具",
   },
 ];

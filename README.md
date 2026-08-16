@@ -231,6 +231,14 @@ AI 完成一輪工作後，請留下簡短紀錄：
 
 ## 變更紀錄（新條目加在最上面）
 
+### 2026-08-16（Manus，第二輪 100 分制優化）
+- 圖片成本優化：幼兒園頁 4 張課程示意圖 PNG（2.4–2.7MB／張，合計約 10MB）重編碼為 WebP（<200KB／張，降幅 >93%），家長第一眼看到的課程頁傳輸量大幅下降。
+- Starter 遺留清理：刪除 `.openai/hosting.json`（D1/R2 佔位 binding）、`drizzle/meta/_journal.json`、`examples/d1/`（示範程式碼）、928KB 未被引用的舊 favicon `favicon-tangram-bird.png`。`worker/index.ts` 保留：Cloudflare Vite plugin 的 RSC/SSR 管線要求 `config.main` 指向合法 worker 入口（實測 `undefined` 或空 config 會破壞 RSC build），正式部署（GitHub Pages 靜態輸出）不使用該 worker。
+- `vite.config.ts` 簡化：移除 `./.openai/hosting.json` 匯入、佔位資料庫 ID 與 D1/R2 local binding 設定；Cloudflare plugin 僅保留 RSC/SSR 所需設定。
+- 測試防護：`/preschool` 新增「課程圖必須為 WebP、不得有 PNG」斷言與「單張圖片 <300KB」預算斷言（`tests/rendered-html.test.mjs`，18 項全綠）；踩坑紀錄——跨行 regex `.*` 會從 WebP 一路匹配到頁尾其他 PNG，斷言需以 `[^"'\s]*` 限域。
+- 除錯心得：vinext build 失敗且重裝 node_modules 無效時，優先清 `.vinext` 與 `node_modules/.vite` 快取（含已移除模組的錯誤快取狀態）。
+- 驗證：`npm test` 18/18、`npx tsc --noEmit` 通過、防假綠確認（改回 PNG 引用會被抓住）。
+
 ### 2026-08-16（Manus）
 - 測試擴充：新增 `tests/site-pages.test.mjs`（13 項：7 頁路由 200＋品牌事實斷言、招生表單與收費誠實宣告、隱私頁、JSON-LD、sitemap/robots 產出完整性）；`npm test` 升級為跑全部測試檔（17 項全綠，防假綠驗證通過：破壞 sitemap 內容會被抓住）。
 - CI 補強：`.github/workflows/site-check.yml` 新增 push `main`／PR 的 `build-and-test` 門禁（tsc 型別檢查＋靜態輸出 build＋全套測試）；原有 `live-probe`（手動觸發實測正式站）保留不動。

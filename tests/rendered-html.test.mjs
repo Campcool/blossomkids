@@ -86,7 +86,8 @@ test("renders all primary information pages", async () => {
     assert.doesNotMatch(html, /class="cta-band"/, `${path} no duplicate CTA band`);
     assert.doesNotMatch(html, /class="closing-cta"/, `${path} no duplicate closing CTA`);
     if (path === "/preschool") {
-      assert.match(html, /curriculum\/toddler-motor-play\.png/);
+      assert.match(html, /curriculum\/toddler-motor-play\.webp/);
+      assert.doesNotMatch(html, /\/images\/curriculum\/[^"'\s]*\.png/, "curriculum images must be webp (no png)");
       assert.match(html, /大肌肉遊戲/);
       assert.match(html, /入小準備/);
       // 合規：幼兒園頁不得出現注音／分科外語教學宣傳字樣
@@ -114,6 +115,28 @@ test("bundles the Traditional Chinese handwriting headline font", async () => {
   const font = await stat(new URL("../public/fonts/Iansui-subset.woff2", import.meta.url));
   // 子集化後的標題字型：不應為 0，也不應大到未子集（原始 TTF 約 9MB）
   assert.ok(font.size > 10_000 && font.size < 2_000_000);
+});
+
+test("curriculum images are served as webp under size budget", async () => {
+  // Second-round optimization (Manus 2026-08-16): 4 curriculum PNGs (2.4-2.7MB)
+  // were re-encoded to webp (target <200KB each) to cut transfer cost on the
+  // marketing funnel page. Asserts: webp files exist, HTML references them,
+  // and no single image exceeds the 300KB budget (anti-regression guard).
+  const files = [
+    "curriculum/toddler-motor-play.webp",
+    "curriculum/small-music-movement.webp",
+    "curriculum/middle-material-exploration.webp",
+    "curriculum/senior-literacy-play.webp",
+  ];
+  const SIZE_BUDGET = 300 * 1024;
+  const response = await render("/preschool");
+  const html = await response.text();
+  for (const file of files) {
+    const statResult = await stat(new URL(`../public/images/${file}`, import.meta.url));
+    assert.ok(statResult.size > 1024, `${file} exists and is non-empty`);
+    assert.ok(statResult.size < SIZE_BUDGET, `${file} is within ${SIZE_BUDGET}B budget (got ${statResult.size})`);
+    assert.match(html, new RegExp(file.replace(/\//g, "\\/")), `HTML references ${file}`);
+  }
 });
 
 test("keeps shared readability and media-caption tokens documented", async () => {
