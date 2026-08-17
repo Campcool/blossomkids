@@ -63,15 +63,28 @@
 3. **⚠️ 絕對不要把 blossomkids.tw 綁回 OpenAI Sites／chatgpt.site 或改 DNS**——2026-07-20 曾因此網域回到未打碼舊版。
 4. **⚠️ 未去識別的兒童照片不可進任何公開位置**（正式站、預覽站或 repo）。
 5. **vinext build 失敗且重裝 node_modules 無效時**：先清 `.vinext` 與 `node_modules/.vite` 快取（含已移除模組的錯誤快取狀態）。
-6. **`.openai/hosting.json` 已刪**：README.md「GitHub 儲存庫完整性提醒」的 hosting.json 段落過時，以本檔為準；若從 ZIP 重建 repo 而缺失 hosting.json 不再影響建置（vite.config 已不依賴它）。
+6. **`.openai/hosting.json` 已刪**：README.md 該段已於 2026-08-17 一併更正
+   （原本三處要求「確認它存在」，照做會重建一個被刻意刪除的檔案）。
 7. 跨行 regex 陷阱：斷言 `/curriculum/.*\.png` 會從 WebP 匹配到頁尾其他 PNG，須用 `[^"'\s]*` 限域。
+8. **測試讀的是 `out/`（`next build` 靜態匯出），不是 `dist/`（vinext）**。
+   兩條建置管線都存在，但只有 `out/` 會上線。若日後新增測試，一律從 `out/` 讀；
+   `tests/_render.mjs` 已封裝好。另有一條防呆斷言會在 `out/index.html` 不存在
+   或為空時失敗，避免哪天又靜默改回測 `dist/`。
+9. **`site-check.yml` 不再掛 `push: main`**。同一次推送已由 `deploy-pages.yml`
+   的門禁跑過 tsc + build + test，重跑只是重複耗時。該 workflow 保留給 PR
+   前置檢查與 `workflow_dispatch` 的線上實測。
 
 ## 業主待辦（AI 勿代做，可提醒）
 
-Google 商家檔案（最高優先）、真實園所照片（入鏡需家長書面授權）、LINE 官方帳號（填 `site.lineOaId` 即升級預填表單）、園方資料補齊（收費、招生年齡、師資、立案字號）、GSC 首頁索引請求。
+Google 商家檔案（最高優先）、真實園所照片（入鏡需家長書面授權）、LINE 官方帳號（填 `site.lineOaId` 即升級預填表單）、園方資料補齊（收費、招生年齡、師資、立案字號）。
+
+**GSC**：本站已驗證（與 `leakdoctor.tw` 共用驗證碼 `google00a268e494d7ca7a`，
+驗證檔在 `public/google00a268e494d7ca7a.html`，**不要刪**）。sitemap 已於
+2026-08-17 提交、狀態成功；當時 GSC 顯示上次讀取為 08-14，會自行重抓。
+首頁索引請求仍待業主操作。
 
 ---
 
 詳細架構、目錄、設計規則、已確認園所資料與交接流程請見 `README.md` 末尾變更紀錄（新條目在最上）。
 
-最後更新：2026-08-16，由 Manus 建立（滿分制 100 分制優化後）。
+最後更新：2026-08-17（Claude 交叉複驗：門禁與測試對象修正、文件矛盾更正）。
