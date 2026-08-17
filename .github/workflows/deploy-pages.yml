@@ -10,11 +10,20 @@ permissions:
   pages: write
   id-token: write
 
+# 部署進行中不中斷：cancel-in-progress: true 會在連續推送時砍掉進行中的
+# 部署，可能留下站台空窗。與 campcool/deploy.yml 的取捨一致。
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  # 這個 job 就是門禁本身。tsc / test 任一失敗 → 走不到 upload →
+  # deploy 因 needs: build 而不執行 → 線上維持前一個正常版本。
+  #
+  # 2026-08-16 起 README/AI-README 宣稱「門禁保證綠才可上線」，但當時的
+  # tsc/build/test 在 site-check.yml，那支 workflow 與本 workflow 並行、
+  # 彼此沒有相依，測試紅了站照樣上。檢查必須跟 upload 在同一條相依鏈上
+  # 才叫門禁。
   build:
     runs-on: ubuntu-latest
     steps:
@@ -24,9 +33,15 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx next build
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Static export build
+        run: npx next build
         env:
           STATIC_EXPORT: "1"
+      # 測試排在 build 之後：斷言讀的是 out/，也就是下一步要上傳的那份產物。
+      - name: Test the artifact that is about to ship
+        run: npm test
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

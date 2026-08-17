@@ -32,7 +32,7 @@
 - vinext／Vite（僅供本機開發與 chatgpt.site 預覽；正式站不使用）
 - Iansui 芫荽手寫字體，子集化為 woff2 作為童趣塗鴉標題字
 
-> `worker/`、`db/`、`drizzle/`、`examples/`、`.openai/hosting.json` 是原 starter 模板留下的 Cloudflare／Sites 檔案，**正式站（GitHub Pages 靜態輸出）完全不使用**。`tsconfig.json` 已將它們排除於 `next build` 型別檢查外，請勿在正式頁面 import 這些模組（會引入 `cloudflare:workers` 等靜態站不支援的相依）。
+> `worker/`、`db/` 是原 starter 模板留下的 Cloudflare／Sites 檔案，**正式站（GitHub Pages 靜態輸出）完全不使用**。（`drizzle/`、`examples/`、`.openai/hosting.json` 已於 2026-08-16 刪除；`worker/index.ts` 刻意保留，因 Cloudflare Vite plugin 的 RSC 管線需要合法 `config.main`。）`tsconfig.json` 已將它們排除於 `next build` 型別檢查外，請勿在正式頁面 import 這些模組（會引入 `cloudflare:workers` 等靜態站不支援的相依）。
 
 ### 部署管線（重要）
 
@@ -133,17 +133,14 @@ worker/ db/ drizzle/ examples/  starter 模板遺留，正式站不使用（已�
 
 使用 GitHub 網頁上傳 ZIP 時，隱藏檔可能被漏掉。目前請優先確認下列檔案存在：
 
-### `.openai/hosting.json`
+### ~~`.openai/hosting.json`~~ — 已於 2026-08-16 刪除，**不要重建**
 
-```json
-{
-  "project_id": "appgprj_6a5baa3db6d88191b03834b85e865857",
-  "d1": null,
-  "r2": null
-}
-```
+這是 OpenAI Sites starter 模板的遺留物（D1/R2 佔位 binding），已在 commit
+`ee67eb4` 隨其他 starter 殘留一併刪除，`vite.config.ts` 也同時移除了對它的匯入。
+正式站是 GitHub Pages 靜態輸出，完全不使用 Cloudflare 資源，缺少它不影響建置。
 
-`vite.config.ts` 會直接讀取這個檔案；缺少時可能無法重新建置或發布。
+若你從 ZIP 重建 repo 後發現「少了 `.openai/hosting.json`」，那是**正確狀態**，
+請勿依本節舊版指示把它加回來。
 
 ### `.gitignore`
 
@@ -166,13 +163,13 @@ worker/ db/ drizzle/ examples/  starter 模板遺留，正式站不使用（已�
 Codex、Claude 或其他 AI 接手時，請依序進行：
 
 1. 讀完本文件，再檢查 `git status` 與最近提交。
-2. 確認 `.openai/hosting.json` 和 `.gitignore` 存在。
+2. 確認 `.gitignore` 存在（`.openai/hosting.json` 已刪除，見下方「GitHub 儲存庫完整性提醒」，不要重建）。
 3. 先閱讀 `lib/site-data.ts`、`app/page.tsx`、`app/globals.css` 與相關共用元件。
 4. 保留使用者既有修改，不可用重設或覆寫方式清除不相關變更。
 5. 修改文字時全面檢查中文斷句、標點、層級與行動裝置顯示。
 6. 修改圖示或圖片時，保持去背、視覺一致與替代文字完整。
 7. 修改文案後若動到新中文字元，執行 `python3 scripts/subset-font.py` 重產字型子集。
-8. 執行 `npm run build`、`npm test`，並依變更範圍執行 lint 或瀏覽器檢查。
+8. 執行 `STATIC_EXPORT=1 npm run build:static && npm test`，並依變更範圍執行 lint 或瀏覽器檢查。（`npm test` 的斷言讀 `out/`，也就是實際部署的產物，所以必須先建置。`npm run build` 是 vinext 本機開發用的建置，不產出 `out/`。）
 9. 提交前確認桌機與行動裝置版面、電話／LINE／地圖連結及 favicon。
 10. **push `main` 即自動部署正式站**（GitHub Pages）；不需、也不應手動改 DNS 或綁定 chatgpt.site／OpenAI Sites。部署後可手動觸發 `site-check.yml` 確認線上內容。
 
@@ -241,7 +238,8 @@ AI 完成一輪工作後，請留下簡短紀錄：
 
 ### 2026-08-16（Manus）
 - 測試擴充：新增 `tests/site-pages.test.mjs`（13 項：7 頁路由 200＋品牌事實斷言、招生表單與收費誠實宣告、隱私頁、JSON-LD、sitemap/robots 產出完整性）；`npm test` 升級為跑全部測試檔（17 項全綠，防假綠驗證通過：破壞 sitemap 內容會被抓住）。
-- CI 補強：`.github/workflows/site-check.yml` 新增 push `main`／PR 的 `build-and-test` 門禁（tsc 型別檢查＋靜態輸出 build＋全套測試）；原有 `live-probe`（手動觸發實測正式站）保留不動。
+- CI 補強：`.github/workflows/site-check.yml` 新增 push `main`／PR 的 `build-and-test` 檢查（tsc 型別檢查＋靜態輸出 build＋全套測試）；原有 `live-probe`（手動觸發實測正式站）保留不動。
+  > ⚠️ **2026-08-17 更正**：原文稱這是「門禁」，但它與 `deploy-pages.yml` 並行、無 `needs` 相依，擋不住部署。真正的門禁已於 2026-08-17 移入 `deploy-pages.yml`，本 workflow 也已拿掉 `push: main`。
 - 辯證結論（未動程式碼）：多頁「待補／待確認」灰標依 2026-07-20 業主策略維持現狀，AI 不代業主隱藏或補內容；placeholder 數量未設 CI 斷言，因內容狀態由園方資料決定。
 
 ### 2026-07-20（Claude）

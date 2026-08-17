@@ -1,18 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile, stat } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-
-async function render(path = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
-}
+import { render, outPath } from "./_render.mjs";
 
 // ── 品牌核心事實（每頁都應一致）───────────────────────────
 const brandFacts = [
@@ -68,14 +57,23 @@ test("homepage carries ld+json structured data", async () => {
   assert.match(html, /application\/ld\+json/);
 });
 
-// ── sitemap / robots 靜態產出存在（Pages 直接提供 dist/client）───
+// ── sitemap / robots 靜態產出存在（GitHub Pages 直接提供 out/）───
 for (const file of ["sitemap.xml", "robots.txt"]) {
   test(`${file} produced by build`, async () => {
-    await stat(fileURLToPath(new URL(`../dist/client/${file}`, import.meta.url)));
+    await stat(outPath(file));
   });
 }
 
 test("sitemap.xml lists the admissions page", async () => {
-  const xml = await readFile(new URL("../dist/client/sitemap.xml", import.meta.url), "utf-8");
+  const xml = await readFile(outPath("sitemap.xml"), "utf-8");
   assert.match(xml, /admissions/, "admissions page should be listed");
-})
+});
+
+// ── 防呆：確認測到的是真的上線產物 ────────────────────────────
+// 這套測試曾經掛在 vinext 的 dist/ 上，全綠但驗的不是部署的東西。
+// 這一條讓那種錯誤無法再靜默發生。
+test("tests run against the deployed static export, not the dev bundle", async () => {
+  const html = await (await render("/")).text();
+  assert.ok(html.length > 5_000, "out/index.html 必須存在且有內容——若為空，代表沒先跑 STATIC_EXPORT=1 next build");
+  await stat(outPath("index.html"));
+});

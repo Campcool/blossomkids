@@ -15,9 +15,15 @@ on:
       - 'next.config.ts'
       - 'vite.config.ts'
       - 'tsconfig.json'
+      # worker/db/drizzle 不進正式站（next 靜態匯出不碰），但會影響
+      # vinext build 與型別檢查，改壞了仍應在 PR 階段就被擋下。
+      - 'worker/**'
+      - 'db/**'
+      - 'drizzle.config.ts'
       - '.github/workflows/site-check.yml'
-  push:
-    branches: [main]
+  # 不再掛 push: main。同一次推送已由 deploy-pages.yml 跑過 tsc + build + test，
+  # 而且那條才是真正擋部署的門禁；這裡重跑只是重複耗時。
+  # 本 workflow 保留給 PR 前置檢查與 workflow_dispatch 的線上實測。
 
 jobs:
   build-and-test:
