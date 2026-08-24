@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -37,7 +38,7 @@ export function PlayfulPageMap() {
                 key={item.key}
                 aria-current={isCurrent ? "page" : undefined}
               >
-                <span className="map-piece-art" aria-hidden="true"><img src={item.image} alt="" /></span>
+                <span className="map-piece-art" aria-hidden="true"><Image src={item.image} alt="" width={56} height={56} /></span>
                 <span className="map-piece-copy"><small>{item.meta}</small><strong>{item.label}</strong></span>
               </Link>
             );

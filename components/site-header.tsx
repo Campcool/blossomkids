@@ -34,15 +34,6 @@ export function SiteHeader() {
             <Link className="button button-small header-cta" href="/admissions#visit-form"><ContactIcon type="visit" />預約參觀</Link>
           </div>
 
-          <div className="mobile-header-actions" aria-label="手機快速聯絡">
-            <a className="mobile-head-action mobile-head-call" href={site.phoneHref} aria-label={`立即致電 ${site.phoneDisplay}`}>
-              <ContactIcon type="phone" />
-            </a>
-            <a className="mobile-head-action mobile-head-line" href={site.lineHref} target="_blank" rel="noreferrer" aria-label="開啟華兒園 LINE 熱點">
-              <ContactIcon type="line" />
-            </a>
-          </div>
-
         </div>
       </header>
     </>

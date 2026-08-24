@@ -3289,6 +3289,10 @@ main dt { font-size: var(--text-small); line-height: 1.55; }
 }
 
 @media (max-width: 780px) {
+  .utility-bar { display: none; }
+  h1,
+  .hero-copy h1,
+  .page-hero h1 { font-size: 3rem; }
   .site-header .brand-copy small { display: none; }
   .site-header .play-map-track {
     grid-template-columns: none;
@@ -3333,6 +3337,9 @@ main dt { font-size: var(--text-small); line-height: 1.55; }
 }
 
 @media (max-width: 420px) {
+  h1,
+  .hero-copy h1,
+  .page-hero h1 { font-size: 2.65rem; }
   .site-header .map-piece .map-piece-art { width: 29px; height: 29px; }
   .site-header .map-piece-copy strong { font-size: .8125rem; }
   .contact-dock .dock-symbol { width: 29px; height: 29px; }

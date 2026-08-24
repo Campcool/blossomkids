@@ -115,14 +115,14 @@ export default function PreschoolPage() {
                 {schedule.map((item, index) => (
                   <li key={item.time}>
                     <span className="flow-index">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="daily-illustration" aria-hidden="true"><img src={item.image} alt="" /></span>
+                    <span className="daily-illustration" aria-hidden="true"><Image src={item.image} alt="" width={72} height={72} /></span>
                     <time>{item.time}</time>
                     <div><strong>{item.title}</strong><span>{item.note}</span></div>
                   </li>
                 ))}
               </ol>
               <div className="notebook-footer"><span aria-hidden="true">✎</span> 依 115 學年度全園幼兒作息表整理；班級活動會依課程與幼兒狀況調整。</div>
-              <span className="notebook-sticker" aria-hidden="true"><img src="/images/toys/cutouts/rainbow.png" alt="" /></span>
+              <span className="notebook-sticker" aria-hidden="true"><Image src="/images/toys/cutouts/rainbow.png" alt="" width={96} height={96} /></span>
             </div>
           </div>
         </section>
