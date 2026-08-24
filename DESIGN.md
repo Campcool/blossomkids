@@ -52,6 +52,9 @@ Warm, trustworthy and child-friendly without looking childish. The interface sho
 - Mobile touch targets should be at least 44px high.
 - Tables keep readable text and scroll horizontally on narrow screens; do not compress type to fit.
 - Fixed mobile contact actions must remain readable without covering the final page content.
+- Mobile uses one persistent contact surface: keep the bottom contact dock and do not duplicate phone or LINE controls in the sticky header.
+- Hide the utility strip on mobile so the school identity and page map remain the only sticky header content.
+- Use fixed heading sizes at mobile breakpoints; do not scale Traditional Chinese display type continuously with viewport width.
 
 ## Accessibility and Motion
 

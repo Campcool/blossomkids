@@ -2,6 +2,15 @@
 
 > 本倉庫的完整交接文件是 `README.md`（Codex × Claude × Manus 共同維護的 AI-readme）。本檔案是**供 AI 快速定位的索引與最新狀態快照**：接手者讀完本檔後，應完整閱讀 `README.md` 再動手。
 
+## 2026-08-24 手機 UI/UX 優化（Codex，待審查）
+
+- 分支：`codex/ui-polish-blossomkids-2026-08-24`，從遠端 `main` 的 `304c0cb` 開出；不得未經使用者同意合併。
+- 手機隱藏 32px utility bar，移除 sticky header 內重複的電話／LINE 圓鈕；保留底部三項 contact dock，避免同一操作在上下各出現一次。390x844 實測 sticky header 高 121px（優化前約 159px）。
+- 手機 H1 改用 3rem／420px 以下 2.65rem 的穩定 breakpoint 尺寸，不再隨 viewport 連續縮放。
+- 首頁、幼兒園作息與全站 page map 的裝飾圖改用 Next `Image` 並提供 intrinsic width/height，降低載入版面位移。
+- 使用者表示真實園所照後續提供；本輪未替換照片、未改園所事實、電話、LINE、GA4 或招生資料。同步更新 `DESIGN.md` 的單一行動聯絡面與字級規則。
+- 驗證：ESLint、`STATIC_EXPORT=1 npm run build:static`、`npm test` 19/19、`git diff --check` 全綠；390x844 首頁與 `/preschool`、1440x1000 桌機實際渲染皆無水平溢位與 console error/warning。
+
 ## 專案現況（2026-08-16 快照）
 
 | 項目 | 狀態 |
@@ -87,4 +96,4 @@ Google 商家檔案（最高優先）、真實園所照片（入鏡需家長書�
 
 詳細架構、目錄、設計規則、已確認園所資料與交接流程請見 `README.md` 末尾變更紀錄（新條目在最上）。
 
-最後更新：2026-08-17（Claude 交叉複驗：門禁與測試對象修正、文件矛盾更正）。
+最後更新：2026-08-24（Codex 手機 UI/UX 優化，待他方 AI 審查與使用者合併授權）。

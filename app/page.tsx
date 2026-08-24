@@ -142,14 +142,14 @@ export default function Home() {
             {homeSchedule.map((item, index) => (
               <li key={item.time}>
                 <span className="flow-index">{String(index + 1).padStart(2, "0")}</span>
-                <span className="daily-illustration" aria-hidden="true"><img src={item.image} alt="" /></span>
+                <span className="daily-illustration" aria-hidden="true"><Image src={item.image} alt="" width={72} height={72} /></span>
                 <time>{item.time}</time>
                 <div><strong>{item.title}</strong><span>{item.note}</span></div>
               </li>
             ))}
           </ol>
           <div className="notebook-footer home-notebook-footer"><span aria-hidden="true">✿</span><Link className="text-link" href="/preschool#daily-rhythm">查看完整一日作息 <span aria-hidden="true">→</span></Link></div>
-          <span className="notebook-sticker" aria-hidden="true"><img src="/images/toys/cutouts/rainbow.png" alt="" /></span>
+          <span className="notebook-sticker" aria-hidden="true"><Image src="/images/toys/cutouts/rainbow.png" alt="" width={96} height={96} /></span>
         </div>
       </section>
 
@@ -179,7 +179,7 @@ export default function Home() {
               <Link href={record.href} key={record.href}>
                 <span className="record-card-head">
                   <span className="record-number">{record.number}</span>
-                  <span className="record-icon" aria-hidden="true"><img src={record.image} alt="" /></span>
+                  <span className="record-icon" aria-hidden="true"><Image src={record.image} alt="" width={72} height={72} /></span>
                 </span>
                 <h3>{record.title}</h3>
                 <p>{record.text}</p>
