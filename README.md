@@ -14,6 +14,12 @@
 
 網站服務範圍包含兩歲專班、幼兒園與國小課後照顧，重點是讓家長快速看懂日程、環境、費用、招生與聯絡資訊。
 
+## GitHub Actions runtime 升級（2026-08-25，Codex）
+
+GitHub Pages 的檢查與部署 workflow 已升至官方 Node 24 世代：`checkout@v7`、
+`setup-node@v7`、`upload-pages-artifact@v5`、`deploy-pages@v5`。網站本身仍以 Node 22
+建置，未改網站內容或任何對外事實；PR 合併前須等待另一位 AI 覆審與使用者授權。
+
 ## 正式託管與網域（2026-07-20 業主最終決定，優先於任何舊描述）
 
 **正式網站由 GitHub Pages 託管**，透過 `.github/workflows/deploy-pages.yml` 在每次 push `main` 時以 `STATIC_EXPORT=1 npx next build` 產出靜態站自動部署。

@@ -2,6 +2,12 @@
 
 > 本倉庫的完整交接文件是 `README.md`（Codex × Claude × Manus 共同維護的 AI-readme）。本檔案是**供 AI 快速定位的索引與最新狀態快照**：接手者讀完本檔後，應完整閱讀 `README.md` 再動手。
 
+## 2026-08-25 GitHub Actions Node 24 runtime（Codex）
+
+workflow 已升至 `checkout@v7`、`setup-node@v7`、`upload-pages-artifact@v5`、
+`deploy-pages@v5`；Pages 上傳 Action 內部使用 `upload-artifact@v7`。網站建置仍使用
+Node 22，本輪未改招生事實、電話、LINE、GA4、案例或照片。完整紀錄同步在 `README.md`。
+
 ## 2026-08-24 手機 UI/UX 優化（Codex，待審查）
 
 - 分支：`codex/ui-polish-blossomkids-2026-08-24`，從遠端 `main` 的 `304c0cb` 開出；不得未經使用者同意合併。
