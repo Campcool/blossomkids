@@ -1,3 +1,4 @@
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
@@ -11,20 +12,21 @@ export default function AdmissionsPage() {
   return (
     <>
       <PageHero eyebrow="ADMISSIONS & VISIT" title="實際看看｜再做打算" description="華兒園誠摯邀請您帶小寶貝一同參觀；招生年齡、名額、費用與流程也集中在這一頁。" note="收費與名額依學年度公告為準；實際金額以現場詢問為主，歡迎來電或加園長 LINE 洽詢最新資訊。" />
+      <SectionNav items={[{ href: "#visit-steps", label: "參觀流程" }, { href: "#eligibility", label: "班別名額" }, { href: "#fees", label: "費用補助" }, { href: "#visit-form", label: "預約參觀" }]} />
       <div id="page-content">
-        <section className="section journey-section toy-section toy-stair">
+        <section className="section journey-section toy-section toy-stair" id="visit-steps">
           <div className="container">
             <SectionHeading eyebrow="HOW TO JOIN" title="先看清楚｜再安心決定" description="四步完成資料確認、預約參觀、現場提問與入學準備。" />
             <ol className="step-grid">
               <li><span>01</span><h3>查看基本資訊</h3><p>先確認年齡、課程方向、地點與可配合時段。</p></li>
-              <li><span>02</span><h3>預約到園參觀</h3><p>留下最少必要資料，由園方聯繫安排時間。</p></li>
+              <li><span>02</span><h3>預約到園參觀</h3><p>整理預約訊息，透過 LINE 傳送或致電，與園方確認時間。</p></li>
               <li><span>03</span><h3>現場了解與提問</h3><p>看環境、談孩子需求並取得正式招生資料。</p></li>
               <li><span>04</span><h3>完成報名文件</h3><p>確認名額、收費、退費、契約及入學準備。</p></li>
             </ol>
           </div>
         </section>
 
-        <section className="section soft-section eligibility-section toy-section toy-pink">
+        <section className="section soft-section eligibility-section toy-section toy-pink" id="eligibility">
           <div className="container">
             <SectionHeading eyebrow="ELIGIBILITY" title="年齡對照清楚｜名額狀態明白" description="出生年月與候補狀態，依最新學年度核定簡章更新。" />
             <div className="admission-table">

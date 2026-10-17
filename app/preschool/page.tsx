@@ -1,3 +1,5 @@
+import { LearningThemes } from "@/components/learning-themes";
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
@@ -60,10 +62,12 @@ export default function PreschoolPage() {
   return (
     <>
       <PageHero eyebrow="PRESCHOOL · 2–6" title="好好玩｜慢慢長" description="幼幼班到大班：班別、學習重點、正式一日作息與餐點資訊，都在這裡。" note="活動時間會依幼童學習興趣微調；餐點與午休維持固定照顧節奏。" />
+      <SectionNav items={[{ href: "#age-groups", label: "班別與年齡" }, { href: "#learning", label: "學習重點" }, { href: "#daily-rhythm", label: "一日作息" }, { href: "#meal-care", label: "餐點照顧" }]} />
       <div id="page-content">
-        <section className="section age-section toy-section toy-pink">
+        <section className="section age-section toy-section toy-pink" id="age-groups">
           <div className="container">
-            <SectionHeading eyebrow="AGE GROUPS" title="年齡各有步調｜陪伴各有重點" description="幼幼、小、中、大班的年齡、學習重點與名額分開整理。" />
+            <SectionHeading eyebrow="AGE GROUPS" title="年齡各有步調｜陪伴各有重點" description="先看各班的學習重點；實際招生出生年月與最新名額，請見招生參觀頁。" />
+            <p className="illustration-note">課程圖片為情境示意；活動依班級與幼兒狀況安排。</p>
             <div className="age-grid">
               {ageGroups.map((group) => (
                 <article className="age-card" key={group.name}>
@@ -84,7 +88,7 @@ export default function PreschoolPage() {
           </div>
         </section>
 
-        <section className="section soft-section learning-section toy-section toy-tangram">
+        <section className="section soft-section learning-section toy-section toy-tangram" id="learning">
           <div className="container content-split">
             <div>
               <p className="eyebrow">LEARNING THROUGH LIFE</p>
@@ -101,6 +105,8 @@ export default function PreschoolPage() {
             </div>
           </div>
         </section>
+
+        <LearningThemes />
 
         <section className="section daily-section toy-section toy-cylinders" id="daily-rhythm">
           <div className="container">
@@ -127,7 +133,7 @@ export default function PreschoolPage() {
           </div>
         </section>
 
-        <section className="section meal-feature toy-section toy-tablets">
+        <section className="section meal-feature toy-section toy-tablets" id="meal-care">
           <div className="container meal-grid">
             <div>
               <p className="eyebrow">MEALS & CARE</p><h2>菜單看得懂<br />每一餐更安心</h2>

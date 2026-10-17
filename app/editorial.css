@@ -1,0 +1,286 @@
+/* 2026-10: the school field guide. Loaded after the established component styles. */
+.school-editorial {
+  --ink: #18352e;
+  --ink-deep: #0d2923;
+  --muted: #52665e;
+  --paper: #fffdf8;
+  --cream: #f7f2e8;
+  --green-light: #e7eee5;
+  --yellow: #e6b94c;
+  --line: #cfd8d1;
+  --section-space: clamp(56px, 6.5vw, 92px);
+  background: var(--paper);
+  line-height: 1.8;
+  accent-color: var(--green);
+  caret-color: var(--green);
+}
+.school-editorial :is(h1, h2, h3) { letter-spacing: -.02em; text-wrap: balance; }
+.school-editorial p { text-wrap: pretty; }
+.school-editorial .section { padding-block: var(--section-space); }
+.school-editorial .section-heading { margin-bottom: 32px; max-width: 760px; }
+.school-editorial :is(h2, .major-section-title) { font-size: 2.65rem; line-height: 1.35; }
+.school-editorial .section-heading p { max-width: 36em; font-size: 1rem; }
+.school-editorial .eyebrow { color: #73552f; letter-spacing: .12em; margin-bottom: 12px; }
+.school-editorial :is(.button, .header-contact) { box-shadow: none; }
+.school-editorial .button { gap: 12px; min-height: 48px; font-size: 1rem; letter-spacing: 0; }
+.school-editorial .button-ghost { color: var(--ink); background: transparent; }
+.school-editorial .button-ghost:hover { color: white; background: var(--ink); }
+.school-editorial :is(a, button, summary, input, select, textarea):focus-visible { outline: 3px solid #a56712; outline-offset: 4px; }
+.school-editorial .site-header { background: var(--paper); backdrop-filter: none; }
+.school-editorial .site-header .map-piece { background: transparent; border-color: transparent; box-shadow: none; }
+.school-editorial .site-header .map-piece[aria-current="page"] { background: var(--green-light); border-color: #b8cbbd; }
+.school-editorial .site-header .map-piece-copy strong { font-size: .875rem; }
+.school-editorial .site-header .map-piece:hover { background: var(--cream); }
+.school-editorial main :is(section[id], div[id]) { scroll-margin-top: 145px; }
+.school-editorial .toy-section::before,
+.school-editorial .toy-section::after,
+.school-editorial .home-hero::before,
+.school-editorial .home-hero::after,
+.school-editorial .page-hero::before,
+.school-editorial .page-hero::after { content: none; }
+
+/* The opening spread: a clear invitation beside an authored picture-book scene. */
+.school-editorial .storybook-hero { padding: 46px 0 38px; background: var(--paper); }
+.school-editorial .hero-grid { grid-template-columns: .8fr 1.2fr; gap: 26px; }
+.school-editorial .hero-place { color: #536b5b; margin-bottom: 18px; font-size: .9375rem; letter-spacing: .08em; }
+.school-editorial .hero-copy h1 { font-size: 5.6rem; line-height: 1.2; margin-bottom: 20px; }
+.school-editorial .hero-copy h1 span { color: #477150; }
+.school-editorial .hero-intro { font-size: 1.125rem; color: var(--ink); margin-bottom: 12px; }
+.school-editorial .hero-lead { font-size: 1rem; line-height: 1.85; margin-bottom: 25px; }
+.school-editorial .hero-copy .button-row { gap: 20px; }
+.school-editorial .hero-location { display: flex; align-items: center; gap: 10px; margin-top: 24px; font-size: .875rem; color: var(--muted); max-width: 28em; }
+.school-editorial .hero-location .location-pin { flex-shrink: 0; }
+.school-editorial .hero-visual { padding: 0; border-radius: 0; background: transparent; }
+.storybook-art { margin: 0; }
+.storybook-art > img { display: block; width: 100%; height: auto; }
+.storybook-art figcaption { padding: 4px 0 0; text-align: center; font-family: "Iansui", cursive; color: var(--ink); font-size: 1.2rem; }
+.storybook-art figcaption small { display: block; margin-top: 8px; color: var(--muted); font: .875rem/1.6 "Noto Sans TC", sans-serif; }
+
+/* Visible, wrapping page contents; no second sticky bar competing for screen space. */
+.reading-nav { border-block: 1px solid var(--line); background: #f7f2e8; }
+.reading-nav-inner { display: flex; align-items: center; gap: 30px; padding-block: 16px; }
+.reading-nav-inner > span { color: var(--muted); font-size: .875rem; flex-shrink: 0; }
+.reading-nav ul { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.reading-nav a { display: flex; align-items: center; gap: 20px; min-height: 44px; color: var(--ink); font-weight: 700; }
+.reading-nav a span { color: #687958; }
+.reading-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.school-editorial .fact-strip { margin: 0 auto; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; background: var(--paper); width: min(1160px, calc(100% - 40px)); }
+.school-editorial .fact-grid div { padding: 20px 24px; }
+.school-editorial .fact-grid div:first-child { border-left: 0; }
+.school-editorial .fact-grid div:last-child { border-right: 0; }
+.school-editorial .fact-grid span { color: var(--muted); font-size: .875rem; }
+.school-editorial .fact-grid strong { font-size: 1.15rem; }
+
+/* Service choices are short and distinct; full details live on their own pages. */
+.school-editorial .path-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+.school-editorial .path-card { display: block; min-height: 0; padding: 30px; border: 0; border-radius: 16px; box-shadow: none; transform: none; }
+.school-editorial .path-sage { background: #e7eee5; color: var(--ink); }
+.school-editorial .path-clay { background: #f5e7d9; color: var(--ink); }
+.school-editorial .path-card h3 { margin: 18px 0 12px; font-size: 2.35rem; }
+.school-editorial .path-card p { max-width: 24em; margin-bottom: 24px; font-size: 1rem; color: var(--muted); }
+.school-editorial .path-label { display: block; color: var(--muted); font-size: .875rem; letter-spacing: 0; }
+.path-material { float: right; width: 112px; height: 112px; object-fit: contain; margin: 14px -6px 4px 12px; }
+.school-editorial .path-link { position: static; font-size: 1rem; }
+.school-editorial .path-card:hover { background: #dde8dc; }
+.school-editorial .path-clay:hover { background: #efdecc; }
+
+/* Three topical spreads, with optional depth supplied by native details. */
+.school-editorial .learning-themes { background: #f3f0e6; }
+.theme-heading { display: grid; grid-template-columns: 1fr .85fr; gap: 60px; align-items: end; margin-bottom: 40px; }
+.theme-heading h2 { margin: 0; }
+.theme-heading p { margin-bottom: 8px; max-width: 32em; }
+.theme-heading .theme-disclaimer { font-size: .875rem; }
+.theme-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start; }
+.learning-theme { min-width: 0; }
+.theme-art { display: flex; justify-content: center; align-items: center; height: 170px; margin-bottom: 24px; border-radius: 90px 90px 16px 16px; background: #e6eada; }
+.theme-nature .theme-art { background: #e7dfc8; }
+.theme-create .theme-art { background: #efdfd3; }
+.theme-art img { height: 142px; width: 180px; object-fit: contain; }
+.theme-category { display: block; font-size: .875rem; font-weight: 700; color: #5d6e50; }
+.school-editorial .learning-theme h3 { margin: 12px 0; font-size: 1.65rem; line-height: 1.5; }
+.learning-theme > p { font-size: 1rem; line-height: 1.85; margin-bottom: 24px; }
+.theme-idea { border-block: 1px solid #bbc5b7; }
+.theme-idea summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 52px; cursor: pointer; list-style: none; font-weight: 700; }
+.theme-idea summary::-webkit-details-marker { display: none; }
+.theme-idea summary span { font-size: 1.25rem; transition: transform .18s ease; }
+.theme-idea[open] summary span { transform: rotate(45deg); }
+.theme-idea > div { padding-bottom: 18px; }
+.theme-idea strong { font-size: 1rem; line-height: 1.8; }
+.theme-idea p { margin: 12px 0 0; font-size: 1rem; }
+
+/* Give practical reading a quieter register than the invitation. */
+.school-editorial .parent-priorities { background: var(--paper); }
+.school-editorial .question-layout { grid-template-columns: .9fr 1.1fr; gap: 70px; }
+.school-editorial .question-layout .section-heading { position: static; }
+.school-editorial .question-row { padding: 24px 0; }
+.school-editorial .question-row:first-child { border-top: 1px solid var(--line); }
+.school-editorial .question-row h3 { font-size: 1.5rem; }
+.school-editorial .question-row p { font-size: 1rem; }
+.school-editorial .split-intro { gap: 48px; margin-bottom: 32px; }
+.school-editorial .home-rhythm-section { background: #eef2ea; }
+.school-editorial .daily-notebook { padding: 32px; border: 1px solid #cfd8c6; border-radius: 16px; background: var(--paper); box-shadow: none; }
+.school-editorial .daily-notebook::before,
+.school-editorial .daily-notebook::after,
+.school-editorial .daily-flow li::before,
+.school-editorial .daily-flow li::after { content: none; }
+.school-editorial :is(.notebook-tape, .notebook-sticker, .flow-index) { display: none; }
+.school-editorial .notebook-heading { margin-bottom: 24px; }
+.school-editorial .notebook-heading strong { font-size: 1.5rem; }
+.school-editorial .notebook-heading em { border: 0; border-radius: 4px; background: #f3e4bf; color: #6a4a20; transform: none; font-size: .875rem; }
+.school-editorial .daily-flow { grid-template-columns: 1fr 1fr; gap: 0 32px; }
+.school-editorial .daily-flow li { display: grid; grid-template-columns: 64px 1fr; align-content: start; gap: 4px 18px; min-height: 0; padding: 20px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; transform: none; }
+.school-editorial .daily-flow .daily-illustration { position: static; grid-row: 1 / 3; align-self: center; width: 64px; height: 64px; margin: 0; border: 0; background: transparent; box-shadow: none; transform: none; }
+.school-editorial .daily-flow time { margin: 0; color: #865135; font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.school-editorial .daily-flow li > div { grid-column: 2; }
+.school-editorial .daily-flow strong { font-size: 1.125rem; }
+.school-editorial .daily-flow div > span { font-size: .9375rem; }
+.school-editorial .notebook-footer { border: 0; padding-top: 0; font-size: .875rem; }
+.school-editorial .campus-preview { background: var(--paper); }
+.school-editorial .photo-grid { grid-template-columns: .85fr 1.15fr; grid-template-rows: repeat(2, 180px); }
+.school-editorial .photo-grid .photo-wide { grid-row: auto; }
+.school-editorial .home-campus-real { grid-column: 2; grid-row: 1 / 3; }
+.school-editorial .photo-grid .maintenance-visual { display: none; }
+.school-editorial .maintenance-slot { background: #edf1e9; }
+.school-editorial :is(.maintenance-gear, .maintenance-tool, .maintenance-pulse, .maintenance-label i) { animation: none; }
+.school-editorial .record-grid { gap: 0; border-top: 1px solid var(--line); }
+.school-editorial .record-grid > a { padding: 24px; border: 0; border-right: 1px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; }
+.school-editorial .record-grid > a:last-child { border-right: 0; }
+.school-editorial .record-grid h3 { margin-top: 12px; font-size: 1.5rem; }
+.school-editorial .record-grid p { font-size: 1rem; }
+.school-editorial .record-number { display: none; }
+.school-editorial .records-section { background: #f7f2e8; }
+.school-editorial .info-section { background: #e5ebdf; }
+.school-editorial .public-preview { border-radius: 12px; box-shadow: none; }
+.school-editorial .faq-layout { gap: 60px; }
+.school-editorial .faq-list p { max-width: 38em; font-size: 1rem; }
+.school-editorial .faq-list summary { min-height: 44px; align-items: center; gap: 20px; }
+
+/* Interior pages share the same calm paper, scale and readable measures. */
+.school-editorial .page-hero { padding: 52px 0; background: #f2f1e5; }
+.school-editorial .page-hero-inner { grid-template-columns: 1.4fr .7fr; gap: 64px; align-items: center; }
+.school-editorial .page-hero h1 { font-size: 3.8rem; line-height: 1.3; margin-bottom: 20px; }
+.school-editorial .page-lead { font-size: 1.0625rem; line-height: 1.85; margin-bottom: 24px; max-width: 35em; }
+.school-editorial .page-hero-panel { position: relative; padding: 24px; border: 0; border-radius: 12px; background: #fffdf8; box-shadow: none; }
+.page-note-art { display: block; width: 88px; height: 72px; object-fit: contain; margin-bottom: 12px; }
+.school-editorial .page-hero-panel .panel-index { font-size: 1rem; color: var(--ink); letter-spacing: 0; }
+.school-editorial .page-hero-panel p { margin-top: 10px; font-size: 1rem; }
+.school-editorial :is(.content-split, .meal-grid, .fees-layout, .form-layout) { gap: 52px; }
+.school-editorial .large-copy { max-width: 32em; font-size: 1.125rem; line-height: 1.85; }
+.school-editorial .illustration-note { margin: -8px 0 24px; font-size: .875rem; }
+.school-editorial .age-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+.school-editorial .age-card { display: grid; grid-template-columns: .9fr 1.1fr; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+.school-editorial .age-card-visual { height: 100%; min-height: 260px; border: 0; }
+.school-editorial .age-card-body { padding: 24px; min-height: 0; }
+.school-editorial .age-section .age-card p { font-size: 1rem; }
+.school-editorial .age-activity-tags { gap: 6px; }
+.school-editorial .age-activity-tags span { white-space: normal; font-size: .875rem; }
+.school-editorial .pillar-list article { padding-block: 24px; }
+.school-editorial .pillar-list h3 { font-size: 1.5rem; }
+.school-editorial .pillar-list p { font-size: 1rem; }
+.school-editorial .step-grid li { border: 0; border-radius: 0; border-top: 2px solid #99af97; padding: 24px 12px 0 0; background: transparent; }
+.school-editorial .step-grid li > span { color: #6b815e; font-size: 1.125rem; }
+.school-editorial .step-grid h3 { font-size: 1.4rem; margin-top: 16px; }
+.school-editorial .step-grid p { font-size: 1rem; }
+.school-editorial :is(.fee-card > p, .fee-review-note p, .line-contact-card p) { font-size: 1rem; }
+.school-editorial .visit-form { box-shadow: none; border: 1px solid var(--line); }
+.school-editorial .visit-form label { font-size: 1rem; }
+.school-editorial .visit-form :is(input, select, textarea) { font-size: 1rem; }
+.school-editorial .form-note { font-size: .875rem; }
+.school-editorial .footer-contact-panel { box-shadow: none; }
+
+@media (max-width: 1050px) {
+  .school-editorial .hero-copy h1 { font-size: 4.5rem; }
+  .school-editorial .hero-grid { gap: 18px; }
+  .school-editorial .path-label { padding-right: 0; }
+  .school-editorial .path-material { width: 86px; height: 86px; }
+  .school-editorial .age-card { display: flex; }
+  .school-editorial .age-card-visual { min-height: 0; height: 235px; }
+  .school-editorial .page-hero h1 { font-size: 3.2rem; }
+  .theme-grid { gap: 24px; }
+  .school-editorial .learning-theme h3 { font-size: 1.4rem; }
+}
+@media (max-width: 780px) {
+  .school-editorial { --section-space: 52px; }
+  .school-editorial .container { width: calc(100% - 36px); }
+  .school-editorial :is(h2, .major-section-title) { font-size: 2rem; }
+  .school-editorial .site-header .map-piece-copy strong { font-size: .875rem; }
+  .school-editorial .storybook-hero { padding: 28px 0 26px; }
+  .school-editorial .hero-grid { grid-template-columns: 1fr; gap: 26px; }
+  .school-editorial .hero-copy h1 { font-size: 3.5rem; margin-bottom: 14px; }
+  .school-editorial .hero-copy h1 br { display: none; }
+  .school-editorial .hero-copy h1 span { margin-left: .2em; }
+  .school-editorial .hero-place { margin-bottom: 12px; font-size: .875rem; }
+  .school-editorial .hero-intro { font-size: 1rem; }
+  .school-editorial .hero-lead { font-size: 1rem; margin-bottom: 20px; }
+  .school-editorial .hero-location { margin-top: 18px; }
+  .school-editorial .hero-visual { width: 100%; max-width: 540px; margin-inline: auto; }
+  .storybook-art figcaption { font-size: 1.0625rem; }
+  .storybook-art figcaption small { margin-top: 4px; }
+  .reading-nav-inner { display: block; padding-block: 12px; }
+  .reading-nav-inner > span { display: block; margin-bottom: 4px; }
+  .reading-nav ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+  .reading-nav a { justify-content: space-between; gap: 8px; font-size: .9375rem; }
+  .school-editorial .fact-strip { width: calc(100% - 36px); }
+  .school-editorial .fact-grid { grid-template-columns: 1fr 1fr; }
+  .school-editorial .fact-grid div { padding: 16px; border-bottom: 1px solid var(--line); }
+  .school-editorial .fact-grid div:nth-child(even) { border-right: 0; }
+  .school-editorial .fact-grid div:nth-last-child(-n+2) { border-bottom: 0; }
+  .school-editorial :is(.path-grid, .question-layout, .split-intro, .theme-heading, .theme-grid, .faq-layout, .page-hero-inner, .content-split, .meal-grid, .fees-layout, .form-layout) { grid-template-columns: 1fr; gap: 28px; }
+  .school-editorial .path-grid { gap: 16px; }
+  .school-editorial .path-card { padding: 24px; }
+  .school-editorial .path-card h3 { font-size: 2.1rem; }
+  .school-editorial .path-card p { font-size: 1rem; }
+  .school-editorial .path-link { font-size: 1rem; }
+  .school-editorial .path-material { width: 100px; height: 100px; }
+  .theme-heading { margin-bottom: 28px; }
+  .theme-grid { gap: 36px; }
+  .theme-art { height: 150px; margin-bottom: 20px; }
+  .theme-art img { height: 128px; }
+  .school-editorial .learning-theme h3 { font-size: 1.75rem; }
+  .learning-theme > p { margin-bottom: 18px; }
+  .school-editorial .question-layout .section-heading { margin-bottom: 0; }
+  .school-editorial .daily-notebook { padding: 24px 18px; }
+  .school-editorial .daily-flow { grid-template-columns: 1fr; gap: 0; }
+  .school-editorial .daily-flow li { grid-template-columns: 54px 1fr; gap: 4px 14px; }
+  .school-editorial .daily-flow .daily-illustration { width: 54px; height: 54px; }
+  .school-editorial .notebook-heading { gap: 16px; }
+  .school-editorial .notebook-heading strong { font-size: 1.35rem; }
+  .school-editorial .notebook-heading em { padding: 8px; }
+  .school-editorial .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 12px; }
+  .school-editorial .photo-grid .photo-slot { min-height: 180px; padding: 18px 12px; }
+  .school-editorial .home-campus-real { grid-column: 1 / -1; grid-row: auto; min-height: 280px; }
+  .school-editorial .record-grid { grid-template-columns: 1fr 1fr; }
+  .school-editorial .record-grid > a { padding: 20px 12px; border-bottom: 1px solid var(--line); }
+  .school-editorial .record-grid > a:nth-child(even) { border-right: 0; }
+  .school-editorial .record-grid p { font-size: .9375rem; }
+  .school-editorial .info-grid { gap: 28px; }
+  .school-editorial .page-hero { padding: 34px 0; }
+  .school-editorial .page-hero h1 { font-size: 3rem; }
+  .school-editorial .page-hero-panel { padding: 20px; }
+  .page-note-art { float: right; width: 64px; height: 60px; margin: 0 0 8px 14px; }
+  .school-editorial .page-hero-panel p { font-size: 1rem; }
+  .school-editorial .page-lead { font-size: 1rem; }
+  .school-editorial .age-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .school-editorial .age-card-body { padding: 20px; }
+  .school-editorial .age-card-visual { height: 200px; }
+  .school-editorial main :is(section[id], div[id]) { scroll-margin-top: 140px; }
+}
+@media (max-width: 520px) {
+  .school-editorial .hero-copy h1 { font-size: 2.7rem; }
+  .school-editorial .hero-copy .button-row { gap: 14px; }
+  .school-editorial .button { padding-inline: 18px; }
+  .school-editorial .age-grid { grid-template-columns: 1fr; }
+  .school-editorial .age-card-visual { height: 220px; }
+  .school-editorial .page-hero h1 { font-size: 2.65rem; }
+  .school-editorial .path-material { width: 84px; height: 84px; }
+}
+@media (max-width: 370px) {
+  .school-editorial .hero-copy h1 { font-size: 2.4rem; }
+  .school-editorial .path-material { width: 64px; height: 64px; }
+  .school-editorial .photo-grid { grid-template-columns: 1fr; }
+  .school-editorial .photo-grid .photo-slot { min-height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .school-editorial *, .school-editorial *::before, .school-editorial *::after { animation: none !important; transition: none !important; }
+}

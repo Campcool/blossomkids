@@ -1,3 +1,4 @@
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { PhotoSlot } from "@/components/photo-slot";
@@ -11,8 +12,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHero eyebrow="ABOUT HUA-ER-YUAN" title="日常有照顧｜成長有腳步" description="從民國 94 年創立、教育宗旨到立案資料，認識華兒園一路走來的做法。" note={`正式設立：${site.establishedRoc}；園所資料以設立許可證書為依據。`} />
+      <SectionNav items={[{ href: "#philosophy", label: "教育理念" }, { href: "#team", label: "認識團隊" }, { href: "#public-info", label: "公開資料" }, { href: "#contact", label: "聯絡位置" }]} />
       <div id="page-content">
-        <section className="section philosophy-section toy-section toy-pink">
+        <section className="section philosophy-section toy-section toy-pink" id="philosophy">
           <div className="container content-split">
             <div><p className="eyebrow">OUR PURPOSE</p><h2>安全是起點<br />適性成長是方向</h2><p className="large-copy">華兒園將健康安全、學習環境、生活自理、社會適應與適性發展，放進每天的照顧與學習。</p><StatusBadge>園方正式教育宗旨</StatusBadge></div>
             <div className="belief-grid">
@@ -65,7 +67,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="section contact-section toy-section toy-tangram">
+        <section className="section contact-section toy-section toy-tangram" id="contact">
           <div className="container contact-layout">
             <div><p className="eyebrow">CONTACT</p><h2>親自走一趟<br />更能安心感受</h2><a className="inline-map-link contact-map-link" href={site.mapsHref} target="_blank" rel="noreferrer"><span className="location-pin" aria-hidden="true" /><span>{site.address}<small>{site.locationLandmark}｜{site.locationRoadNote}</small></span></a><a className="phone-link" href={site.phoneHref}>{site.phoneDisplay}</a><a className="button" href={site.mapsHref} target="_blank" rel="noreferrer">開啟地圖導航</a></div>
             <div className="map-placeholder"><span>MAP</span><strong>{site.address}</strong><p>點擊「開啟地圖導航」，即可查看位置與規劃路線。</p></div>

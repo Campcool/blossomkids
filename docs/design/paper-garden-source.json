@@ -1,0 +1,10 @@
+{
+  "asset": "public/images/themes/paper-garden.webp",
+  "date": "2026-10-17",
+  "source": "OpenAI image generation tool",
+  "purpose": "Brand illustration; not a photograph of the school",
+  "prompt": "Create a premium editorial illustration for Hua-Er-Yuan, a Taiwanese preschool website. Landscape 3:2 composition. Handcrafted layered paper-cut collage with subtle real paper texture, warm ivory background #fffdf8, forest green #18352e, golden mustard #e6b94c, terracotta #d97856 and soft sage. A charming miniature world of learning: an open picture book at center becomes rolling green hills, with a little folded-paper bird, a sprouting plant, a magnifying glass, wooden building blocks, crayons and one small sun. Objects beautifully composed with generous breathing room, tactile edge details and gentle natural shadows; sophisticated children's picture-book art direction, warm and curious, not cheap clipart. The book and little bird are the focal point, all objects within safe central area. No people, no faces, no school building, no logos, no text, no letters, no numbers, no border. This is an illustrative themed asset, not a photograph of the school. Output a high-quality standalone illustration.",
+  "conversion": "sharp: resize to 1440 px wide, WebP quality 82; original retained outside repository",
+  "sizeBytes": 123280,
+  "existingMaterials": "Theme and schedule cutouts are reused from the existing public/images/toys/cutouts directory; no new claim of provenance or school evidence."
+}
