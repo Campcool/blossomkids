@@ -29,6 +29,8 @@ const browser = await chromium.launch({
 });
 const report = { routes: [], checks: [], externalNetwork: 'Map embeds isolated; external destinations checked as URLs only.' };
 const issues = [];
+const pageAnchors = new Map();
+const internalAnchors = new Set();
 try {
   const context = await browser.newContext({ reducedMotion: 'reduce' });
   await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.fulfill({ contentType: 'text/html', body: '<p>External map isolated for layout test.</p>' }));
@@ -50,6 +52,9 @@ try {
         const links = nav ? [...nav.querySelectorAll('a')] : [];
         const h1 = document.querySelector('h1');
         return {
+          anchorIds: [...document.querySelectorAll('[id]')].filter(el => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden').map(el => el.id),
+          internalAnchors: [...document.querySelectorAll('a[href]')].map(a => new URL(a.href)).filter(u => u.origin === location.origin && u.hash).map(u => u.pathname + u.hash),
+          pendingMedia: document.querySelectorAll('.maintenance-slot').length,
           overflow: document.documentElement.scrollWidth - innerWidth,
           h1Count: document.querySelectorAll('h1').length,
           h1Size: h1 && parseFloat(getComputedStyle(h1).fontSize),
@@ -61,9 +66,13 @@ try {
           line: !!document.querySelector('a[href="https://line.me/ti/p/~18250021"]'),
         };
       });
+      pageAnchors.set(path, new Set(result.anchorIds));
+      result.internalAnchors.forEach(href => internalAnchors.add(href));
+      delete result.anchorIds;
+      delete result.internalAnchors;
       report.routes.push({ width, path, ...result });
-      if (result.overflow > 1 || result.h1Count !== 1 || result.images.length || result.missingAnchors.length || result.smallLinks.length || !result.phone || !result.line || !result.fontLoaded) issues.push({ width, path, result });
-      if ([390, 1440].includes(width) && ['/', '/preschool', '/admissions'].includes(path)) {
+      if (result.pendingMedia || result.overflow > 1 || result.h1Count !== 1 || result.images.length || result.missingAnchors.length || result.smallLinks.length || !result.phone || !result.line || !result.fontLoaded) issues.push({ width, path, result });
+      if ([390, 1440].includes(width) && ['/', '/preschool', '/admissions', '/campus', '/about'].includes(path)) {
         const name = path === '/' ? 'home' : path.slice(1);
         await page.screenshot({ path: `${evidence}/${name}-${width}.png`, fullPage: true });
         if (path === '/') {
@@ -73,6 +82,12 @@ try {
       }
     }
   }
+  for (const href of internalAnchors) {
+    const target = new URL(href, origin);
+    const path = target.pathname.replace(/\/$/, '') || '/';
+    assert.ok(pageAnchors.get(path)?.has(decodeURIComponent(target.hash.slice(1))), `Internal link must target visible content: ${href}`);
+  }
+  report.checks.push('Every internal fragment link targets rendered, visible content across all routes');
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(origin + '/');
   await page.locator('.theme-idea summary').first().focus();

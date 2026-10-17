@@ -81,3 +81,7 @@ Warm, trustworthy and child-friendly without looking childish. The interface sho
 - Daily schedule uses ordered rows, visible times and quiet dividers instead of rotated cards. Class information uses two desktop columns and one narrow-phone column.
 - New illustration is AI-generated brand imagery, visibly labelled as non-photographic. Source/prompt: `docs/design/paper-garden-source.json`. It is not evidence of facilities. Existing pending content remains explicit.
 - No new animation library. Maintenance decorations no longer loop. Reduced motion removes transitions and smooth scrolling. Phone contact and native disclosures remain usable without JavaScript.
+
+## 2026-10-17 — missing content stays unpublished
+
+Owner instruction supersedes the earlier placeholder strategy for teacher profiles and photography. Keep supplied campus photographs and masked graduation media. Unfilled media placeholders are not rendered; entire unfilled teacher/activity sections and their links share server-side publication gates. The remaining homepage photo and yearbook use a single explicit column; the text-only school story is at most 760px wide. Resource cards use auto-fit columns, so hiding the teacher link leaves no reserved fourth column. Do not restore placeholders to complete a visual grid. Recovery requirements: `docs/CONTENT-HANDOFF.md`.

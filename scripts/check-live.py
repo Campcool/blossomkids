@@ -24,6 +24,7 @@ def fetch(url):
 def main():
     for route in ["/", "/preschool", "/after-school", "/campus", "/admissions", "/parents", "/about", "/privacy"]:
         html = fetch(ORIGIN + route).decode("utf-8")
+        assert "maintenance-slot" not in html, f"Unfilled photo or teacher placeholder is public: {route}"
         for marker in ["華兒園", "tel:+886229761536", "line.me/ti/p/~18250021"]:
             assert marker in html, f"Missing brand/contact content: {route}: {marker}"
         if route != "/privacy":

@@ -35,7 +35,7 @@ export default function AfterSchoolPage() {
               <div><time>放學</time><h3>接送與點名</h3><p>接送學校、方式與安全交接待補。</p></div>
               <div><time>抵達後</time><h3>點心與緩衝</h3><p>先安頓身心，再進入課後任務。</p></div>
               <div><time>核心時段</time><h3>作業與複習</h3><p>年級分組、師生比與訂正流程待補。</p></div>
-              <div><time>完成後</time><h3>閱讀／多元活動</h3><p>活動課表與師資待補。</p></div>
+              <div><time>完成後</time><h3>閱讀／多元活動</h3><p>活動課表待補。</p></div>
               <div><time>離班</time><h3>晚餐與家長交接</h3><p>供餐及最晚接回時間待補。</p></div>
             </div>
           </div>
@@ -43,13 +43,13 @@ export default function AfterSchoolPage() {
 
         <section className="section soft-section programs-section toy-section toy-shapes" id="programs">
           <div className="container">
-            <SectionHeading eyebrow="PROGRAMS" title="服務逐項整理｜安排一目了然" description="招收年級、時間、費用與師資；尚未確認的內容直接標示待補。" />
+            <SectionHeading eyebrow="PROGRAMS" title="服務逐項整理｜安排一目了然" description="招收年級、時間與費用；尚未確認的內容直接標示待補。" />
             <div className="program-table">
               <div className="program-head"><span>項目</span><span>需說明內容</span><span>目前狀態</span></div>
               <div><strong>平日安親</strong><p>招收年級、時段、作業輔導、師生比</p><StatusBadge /></div>
               <div><strong>接送服務</strong><p>服務學校、接送方式、安全交接、費用</p><StatusBadge /></div>
               <div><strong>供餐</strong><p>點心／晚餐、菜單、過敏原、供餐方式</p><StatusBadge /></div>
-              <div><strong>才藝活動</strong><p>項目、上課日、授課老師、是否另收費</p><StatusBadge /></div>
+              <div><strong>才藝活動</strong><p>項目、上課日、是否另收費</p><StatusBadge /></div>
               <div><strong>寒暑假班</strong><p>期間、每日作息、戶外活動、收費</p><StatusBadge /></div>
             </div>
           </div>

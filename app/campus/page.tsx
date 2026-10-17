@@ -1,3 +1,4 @@
+import { schoolContentVisibility } from "@/lib/content-visibility";
 import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -7,7 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { site } from "@/lib/site-data";
 
-export const metadata: Metadata = { title: "校園日常", description: "華兒園校園環境、安全設施、餐點日常、活動照片與畢業紀錄欄位。" };
+export const metadata: Metadata = { title: "校園日常", description: "華兒園已公開的環境設備照片、安全衛生流程與畢業紀錄。" };
 
 const carePhotos = [
   { src: "/images/campus/bedding-storage.png", alt: "華兒園分格收納的幼兒棉被與寢具", caption: "分格寢具收納｜保持通風並依行事曆清洗" },
@@ -22,7 +23,7 @@ export default function CampusPage() {
   return (
     <>
       <PageHero eyebrow="CAMPUS & EVERYDAY" title="環境看得見｜照顧更安心" description="園所位於 2 樓，以室內教室、學習區與大肌肉活動空間安排每天的生活與探索。" note="環境照片只使用不含孩子、證件與聯絡資料的安全畫面。" />
-      <SectionNav items={[{ href: "#space", label: "室內空間" }, { href: "#safety", label: "安全衛生" }, { href: "#stories", label: "活動紀錄" }, { href: "#alumni", label: "成長相簿" }]} />
+      <SectionNav items={[{ href: "#space", label: "室內空間" }, { href: "#safety", label: "安全衛生" }, ...(schoolContentVisibility.activityStories ? [{ href: "#stories", label: "活動紀錄" }] : []), { href: "#alumni", label: "成長相簿" }]} />
       <div id="page-content">
         <section className="section space-section toy-section toy-rainbow" id="space">
           <div className="container">
@@ -56,26 +57,23 @@ export default function CampusPage() {
           </div>
         </section>
 
-        <section className="section stories-section toy-section toy-shapes" id="stories">
+        {schoolContentVisibility.activityStories && <section className="section stories-section toy-section toy-shapes" id="stories">
           <div className="container">
             <SectionHeading eyebrow="DAILY STORIES" title="一張照片｜一段成長故事" description="活動紀錄依學期、班級與主題整理，不只放照片。" />
             <div className="story-grid">
               {[["主題探索", "活動日期與班級待補"], ["節慶活動", "活動日期與班級待補"], ["戶外學習", "活動日期與地點待補"]].map(([title, detail]) => <article key={title}><PhotoSlot label={title} /><div><h3>{title}</h3><p>{detail}</p><StatusBadge>影像待授權</StatusBadge></div></article>)}
             </div>
           </div>
-        </section>
+        </section>}
 
         <section className="section alumni-section toy-section toy-tangram" id="alumni">
           <div className="container content-split">
             <div><p className="eyebrow">GROWING TOGETHER</p><h2>一屆一相簿<br />每段回憶有歸處</h2><p className="large-copy">畢業合照按學年度整理；僅刊登已取得書面授權的影像。</p><StatusBadge>正式公開前確認影像授權</StatusBadge></div>
-            <div className="yearbook-grid">
+            <div className="yearbook-grid yearbook-grid-single">
               <figure className="yearbook-real-photo">
                 <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮合照" fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 34vw" />
                 <figcaption className="media-caption media-caption-stacked"><strong>第 30 屆畢業典禮</strong><span>學年度與活動日期待補</span></figcaption>
               </figure>
-              <PhotoSlot label="其他學年度" detail="畢業合照候補" />
-              <PhotoSlot label="畢業回顧" detail="文章與照片候補" />
-              <PhotoSlot label="更早年度" detail="檔案整理中" />
             </div>
           </div>
         </section>

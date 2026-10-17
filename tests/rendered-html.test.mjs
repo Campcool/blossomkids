@@ -33,7 +33,7 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /民國 94 年/);
   assert.match(html, /幼兒園核定<\/span><strong>48 人/);
   assert.match(html, /課後照顧核定<\/span><strong>13 人/);
-  assert.match(html, /每張照片都會附上用途說明。/);
+  assert.match(html, /從生活照顧的設備實拍，到已公開的畢業紀錄，認識華兒園的日常。/);
   assert.match(html, /收退費及安全資訊，逐項核對、清楚公開。/);
   assert.match(html, /兩歲專班、幼兒園、國小課後照顧。<\/span><span>日程、環境、費用，一頁看清楚。/);
   assert.match(html, /toys\/cutouts\/pink-tower\.png/);
@@ -43,7 +43,7 @@ test("renders the complete preschool homepage", async () => {
   assert.equal((html.match(/class="play-map"/g) ?? []).length, 1);
   assert.match(html, /footer-contact-panel/);
   assert.match(html, /footer-invitation-map/);
-  assert.match(html, /內容維護中/);
+  assert.doesNotMatch(html, /maintenance-slot|內容維護中/);
   assert.match(html, /footer-contact-copy[\s\S]*major-section-title/);
   assert.match(html, /footer-contact-panel[\s\S]*footer-map-feature/);
   assert.doesNotMatch(html, /footer-action-grid/);
