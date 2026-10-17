@@ -3,7 +3,6 @@ import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
-import { PhotoSlot } from "@/components/photo-slot";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 
@@ -94,7 +93,6 @@ export default function PreschoolPage() {
               <p className="eyebrow">LEARNING THROUGH LIFE</p>
               <h2>從生活出發<br />在遊戲裡學習</h2>
               <p className="large-copy">從動作、語言、情緒、探索與創作出發，把學習放進每天的遊戲與生活。</p>
-              <PhotoSlot label="孩子探索活動" detail="真實活動照片與教師觀察待補" className="content-photo" />
             </div>
             <div className="pillar-list">
               <article><span>01</span><div><h3>身體與動作</h3><p>肢體活動、健康習慣與自我照顧。</p></div></article>

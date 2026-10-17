@@ -77,3 +77,15 @@ test("tests run against the deployed static export, not the dev bundle", async (
   assert.ok(html.length > 5_000, "out/index.html 必須存在且有內容——若為空，代表沒先跑 STATIC_EXPORT=1 next build");
   await stat(outPath("index.html"));
 });
+
+// 未補資料不能只用 CSS 隱藏；靜態 HTML 也不可輸出空照片／師資佔位。
+test("public pages omit pending photo and teacher placeholders but keep supplied media", async () => {
+  for (const route of ["/", "/preschool", "/campus", "/about"]) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, /maintenance-slot|人員形象照取得授權後更新|實拍照片候補|活動日期與班級待補/, route);
+  }
+  const campus = await (await render("/campus")).text();
+  for (const filename of ["bedding-storage.png", "stainless-tableware.jpg", "kitchen-screen-door.jpg", "boiled-drinking-water.png", "wash-area.png", "toilet-partitions.png", "graduation-30-masked.jpg"]) {
+    assert.ok(campus.includes(filename), `keep supplied photo: ${filename}`);
+  }
+});

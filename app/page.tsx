@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { PhotoSlot } from "@/components/photo-slot";
+import { schoolContentVisibility } from "@/lib/content-visibility";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { SentenceText } from "@/components/sentence-text";
@@ -43,11 +43,11 @@ const homeSchedule = [
 ];
 
 const dailyRecords = [
-  { number: "01", title: "本月餐點", text: "每週菜單、過敏原與食材說明", href: "/parents#meals", image: "/images/toys/cutouts/color-tablets.png" },
-  { number: "02", title: "行事與消息", text: "活動、放假與招生公告", href: "/parents#calendar", image: "/images/toys/cutouts/jigsaw.png" },
-  { number: "03", title: "認識老師", text: "照片、資格、年資與教學專長", href: "/about#team", image: "/images/toys/cutouts/pink-tower.png" },
-  { number: "04", title: "成長相簿", text: "歷屆畢業與活動影像", href: "/campus#alumni", image: "/images/toys/cutouts/rainbow.png" },
-];
+  { title: "本月餐點", text: "每週菜單、過敏原與食材說明", href: "/parents#meals", image: "/images/toys/cutouts/color-tablets.png" },
+  { title: "行事與消息", text: "活動、放假與招生公告", href: "/parents#calendar", image: "/images/toys/cutouts/jigsaw.png" },
+  { title: "認識老師", text: "照片、資格、年資與教學專長", href: "/about#team", image: "/images/toys/cutouts/pink-tower.png" },
+  { title: "成長相簿", text: "已公開的畢業影像紀錄", href: "/campus#alumni", image: "/images/toys/cutouts/rainbow.png" },
+].filter((record) => record.href !== "/about#team" || schoolContentVisibility.teacherProfiles);
 
 export default function Home() {
   return (
@@ -150,14 +150,12 @@ export default function Home() {
       <section className="section campus-preview">
         <div className="container">
           <div className="split-intro">
-            <div><p className="eyebrow">SEE THE REAL PLACE</p><h2>空間看得見<br />照顧更放心</h2></div>
-            <SentenceText text="實拍教室、活動動線、門禁與安全設備。每張照片都會附上用途說明。" />
+            <div><p className="eyebrow">SEE THE REAL PLACE</p><h2>校園有紀錄<br />日常看得見</h2></div>
+            <SentenceText text="從生活照顧的設備實拍，到已公開的畢業紀錄，認識華兒園的日常。" />
           </div>
-          <div className="photo-grid">
-            <PhotoSlot label="教室全景" className="photo-wide" />
-            <PhotoSlot label="閱讀與角落學習" />
+          <div className="photo-grid photo-grid-single">
             <figure className="home-campus-real">
-              <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill unoptimized sizes="(max-width: 780px) calc(100vw - 30px), 32vw" />
+              <Image src="/images/graduation-30-masked.jpg" alt="華兒園第30屆畢業典禮校園紀錄" fill unoptimized sizes="(max-width: 780px) calc(100vw - 36px), 760px" />
               <figcaption className="media-caption">第 30 屆畢業典禮紀錄</figcaption>
             </figure>
           </div>
@@ -167,12 +165,12 @@ export default function Home() {
 
       <section className="section records-section">
         <div className="container">
-          <SectionHeading eyebrow="GROWTH ARCHIVE" title="每天有紀錄｜成長看得見" description="餐點、活動、師資與畢業照片，按日期與主題整理。" />
+          <SectionHeading eyebrow="GROWTH ARCHIVE" title="每天有紀錄｜成長看得見" description={schoolContentVisibility.teacherProfiles ? "餐點、活動、師資與畢業照片，按日期與主題整理。" : "餐點、行事消息與畢業紀錄，從這裡找到。"} />
           <div className="record-grid">
-            {dailyRecords.map((record) => (
+            {dailyRecords.map((record, index) => (
               <Link href={record.href} key={record.href}>
                 <span className="record-card-head">
-                  <span className="record-number">{record.number}</span>
+                  <span className="record-number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="record-icon" aria-hidden="true"><Image src={record.image} alt="" width={72} height={72} /></span>
                 </span>
                 <h3>{record.title}</h3>

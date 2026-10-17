@@ -284,3 +284,29 @@
   html { scroll-behavior: auto; }
   .school-editorial *, .school-editorial *::before, .school-editorial *::after { animation: none !important; transition: none !important; }
 }
+
+/* Missing media is not rendered; remaining content must occupy its own layout. */
+.school-editorial .photo-grid-single {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.school-editorial .photo-grid-single .home-campus-real {
+  grid-column: auto;
+  grid-row: auto;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+}
+.school-editorial .record-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+}
+.school-editorial .story-layout-text-only {
+  display: block;
+  max-width: 760px;
+}
+.school-editorial .yearbook-grid-single { grid-template-columns: minmax(0, 1fr); }
+.school-editorial .yearbook-grid-single .yearbook-real-photo { grid-column: auto; }
+@media (max-width: 780px) {
+  .school-editorial .record-grid > a { border-right: 0; }
+}
