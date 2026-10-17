@@ -4,14 +4,14 @@
 
 ## 2026-10-17 幼兒園主題與閱讀節奏更新（Codex，分支審閱）
 
-- 分支：`codex/kindergarten-reading-20261017`，由 `main` 的 `f4a8ec7` 開出；尚未合併或部署。
+- 分支：`codex/kindergarten-reading-20261017`，由 `main` 的 `f4a8ec7` 開出；使用者已於 2026-10-17 授權再次覆查通過後合併 main。
 - 依 Campcool/AI-skill 最新 `c91e250` 的 UI/UX 主技能與四來源整合方法，保留 Next.js／React、Iansui 與園所事實，採用「幼兒園探索手冊」閱讀方向。
 - 首頁新增紙藝繪本主視覺；首頁與幼兒園頁新增繪本、自然、美感三個主題及原生展開的親子活動提案。插畫、課程示意與園所實拍分別標明，不增加未確認的園內課程承諾。
 - 七頁加入段落捷徑；統一段落間距、字級、服務卡、班別圖文及一日作息。樣式集中於 `app/editorial.css`，設計規則同步 `DESIGN.md`。中文文案變動後已重產字型子集。
 - 預約流程文案明確說明需將整理好的訊息透過 LINE 傳送或致電確認；不宣稱表單自動送達。待園方補齊資料、打碼照片、地址、電話與 LINE 保留。
 - 新增 `npm run test:browser`（Playwright Chromium）驗證正式 `out/`，PR 與正式部署管線皆在上傳前執行。包含四種尺寸、原生段落導覽、圖片、字型、鍵盤、預約流程、無 JS 聯絡與 FAQ。不是像素差異比對；未測真機／Safari／Firefox／Lighthouse。
 - 本地驗證：TypeScript、ESLint、Next 靜態建置、vinext 開發建置、19/19 內容測試、32/32 瀏覽器版面與 5/5 互動檢查通過；獨立覆審補件完成（限所提供畫面與紀錄）。
-- 完整來源、指令、限制與預覽：[交付紀錄](docs/design/2026-10-17-update.md)。正式網站仍由 GitHub Pages 託管，不變更 DNS／Sites 綁定。合併前依既有規則保留覆審與使用者授權。
+- 完整來源、指令、限制與預覽：[交付紀錄](docs/design/2026-10-17-update.md)。正式網站仍由 GitHub Pages 託管，不變更 DNS／Sites 綁定。獨立覆審已完成，使用者已授權覆查通過後合併。部署與正式站驗證結果以 PR / Actions 紀錄為準。
 
 ## 專案摘要
 
