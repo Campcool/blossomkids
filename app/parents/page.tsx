@@ -1,3 +1,4 @@
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
@@ -17,6 +18,7 @@ export default function ParentsPage() {
   return (
     <>
       <PageHero eyebrow="FOR FAMILIES" title="消息不漏接｜資料隨手找" description="菜單、行事曆、園務公告與常用文件，都集中在同一頁。" note="公開頁面不刊登孩子姓名、健康、出缺席與個別學習紀錄。" />
+      <SectionNav items={[{ href: "#calendar", label: "行事消息" }, { href: "#meals", label: "每日餐點" }, { href: "#documents", label: "常用文件" }, { href: "#communication", label: "親師溝通" }]} />
       <div id="page-content">
         <section className="section updates-section toy-section toy-rainbow" id="calendar">
           <div className="container">
@@ -47,7 +49,7 @@ export default function ParentsPage() {
           </div>
         </section>
 
-        <section className="section soft-section documents-section toy-section toy-shapes">
+        <section className="section soft-section documents-section toy-section toy-shapes" id="documents">
           <div className="container">
             <SectionHeading eyebrow="DOWNLOADS" title="常用文件｜需要時立即找到" description="行事曆、家長手冊、託藥單與接送申請，都標示日期與版本。" />
             <div className="download-list">
@@ -63,7 +65,7 @@ export default function ParentsPage() {
           </div>
         </section>
 
-        <section className="section privacy-section toy-section toy-cylinders">
+        <section className="section privacy-section toy-section toy-cylinders" id="communication">
           <div className="container info-grid compact-info">
             <div><p className="eyebrow">PRIVACY & COMMUNICATION</p><h2>公開資訊清楚<br />個人資料守好</h2><p>健康、出缺席、學習紀錄與聯絡簿，只在園方指定的個別管道傳送。</p></div>
             <div className="policy-list"><div><strong>一般公告</strong><p>官網與園方正式社群</p></div><div><strong>個別聯繫</strong><p>電話或園方指定系統待補</p></div><div><strong>照片使用</strong><p>書面授權、可撤回與下架流程</p></div><div><strong>資料保存</strong><p>期限、用途與刪除方式待補</p></div></div>

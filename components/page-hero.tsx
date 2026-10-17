@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SentenceText } from "@/components/sentence-text";
 
 type PageHeroProps = {
@@ -24,7 +25,8 @@ export function PageHero({ eyebrow, title, description, note }: PageHeroProps) {
           </div>
         </div>
         <div className="page-hero-panel" aria-label="頁面摘要">
-          <span className="panel-index">本頁資訊</span>
+          <Image className="page-note-art" src="/images/toys/cutouts/tangram-bird.png" alt="" width={112} height={88} />
+          <span className="panel-index">給家長的小提醒</span>
           <SentenceText text={note ?? "尚待園方提供的內容，會清楚標示，不以想像填寫。"} />
         </div>
       </div>

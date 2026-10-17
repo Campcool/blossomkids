@@ -4,7 +4,8 @@ import { PhotoSlot } from "@/components/photo-slot";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { SentenceText } from "@/components/sentence-text";
-import { ContactIcon } from "@/components/contact-icon";
+import { SectionNav } from "@/components/section-nav";
+import { LearningThemes } from "@/components/learning-themes";
 import { schoolFacts, site } from "@/lib/site-data";
 
 const paths = [
@@ -51,38 +52,29 @@ const dailyRecords = [
 export default function Home() {
   return (
     <>
-      <section className="home-hero">
+      <section className="home-hero storybook-hero">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">HUA-ER-YUAN · SANCHONG</p>
-            <h1>好好玩<br />慢慢長</h1>
+            <p className="hero-place">三重・華兒園精緻幼兒園</p>
+            <h1>好好玩<br /><span>慢慢長</span></h1>
+            <p className="hero-intro">把每一天，過成充滿發現的小冒險。</p>
             <SentenceText className="hero-lead" text="兩歲專班、幼兒園、國小課後照顧。日程、環境、費用，一頁看清楚。" />
             <div className="button-row">
-              <Link className="button" href="/admissions#visit-form">預約參觀</Link>
-              <a className="button button-call button-with-icon" href={site.phoneHref}><ContactIcon type="phone" />立即致電</a>
+              <Link className="button" href="/admissions#visit-form">一起來看看華兒園 <span aria-hidden="true">↗</span></Link>
+              <Link className="text-link" href="/preschool">認識幼兒園 <span aria-hidden="true">→</span></Link>
             </div>
-            <div className="hero-contact">
-              <a href={site.lineHref} target="_blank" rel="noreferrer"><b>LINE</b> 加好友直接詢問 <span aria-hidden="true">↗</span></a>
-              <Link href="/campus">看真實校園紀錄 <span aria-hidden="true">→</span></Link>
-            </div>
+            <a className="hero-location" href={site.mapsHref} target="_blank" rel="noreferrer"><span className="location-pin" aria-hidden="true" />{site.locationLandmark}・{site.address}</a>
           </div>
           <div className="hero-visual">
-            <figure className="hero-real-photo">
-              <Image
-                src="/images/hero-learning-space.jpg"
-                alt="溫暖自然的幼兒學習空間概念主視覺，桌上有繪本、木積木、蠟筆與綠色植物"
-                fill
-                unoptimized
-                priority
-                sizes="(max-width: 780px) calc(100vw - 30px), 54vw"
-              />
-              <figcaption className="media-caption">品牌概念主視覺｜實際園所環境請見校園日常</figcaption>
+            <figure className="storybook-art">
+              <Image src="/images/themes/paper-garden.webp" alt="紙藝繪本化成小花園，小鳥、嫩芽、積木與畫筆陪伴孩子探索世界" width={1440} height={960} priority sizes="(max-width: 780px) 100vw, 58vw" />
+              <figcaption>從一個「為什麼」，開始認識世界。<small>品牌主題插畫・非園所實景</small></figcaption>
             </figure>
-            <div className="hero-stamp" aria-hidden="true"><span>AGES</span><strong>2–6</strong><small>＋課後照顧</small></div>
-            <div className="hero-caption"><span>2005</span><div><strong>創立</strong><small>三重在地陪伴</small></div></div>
           </div>
         </div>
       </section>
+
+      <SectionNav items={[{ href: "#choose-path", label: "班別與服務" }, { href: "#learning-themes", label: "探索與學習" }, { href: "#home-rhythm", label: "一日作息" }, { href: "#parent-questions", label: "家長常問" }]} />
 
       <section className="fact-strip" aria-label="園所基本資料">
         <div className="container fact-grid">
@@ -92,14 +84,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section services-section">
+      <section className="section services-section" id="choose-path">
         <div className="container">
-          <SectionHeading eyebrow="TWO PATHS, ONE CARE" title="從幼兒園到課後｜陪伴一路不間斷" description="家有幼兒，或需要國小課後照顧，都能直接找到合適資訊。" />
+          <SectionHeading eyebrow="TWO PATHS, ONE CARE" title="每個階段｜都有剛剛好的陪伴" description="家有幼兒，或需要國小課後照顧，都能直接找到合適資訊。" />
           <div className="path-grid">
             {paths.map((path) => (
               <Link className={`path-card path-${path.color}`} href={path.href} key={path.href}>
-                <span className="path-number">{path.number}</span>
-                <span className="path-label">{path.label}</span>
+                <Image className="path-material" src={path.color === "sage" ? "/images/toys/cutouts/pink-tower.png" : "/images/toys/cutouts/brown-stair.png"} alt="" width={156} height={156} />
+                <span className="path-label">{path.color === "sage" ? "幼幼班・小班・中班・大班" : "國小階段的放學時光"}</span>
                 <h3>{path.title}</h3>
                 <SentenceText text={path.text} />
                 <span className="path-link">完整了解 <b aria-hidden="true">↗</b></span>
@@ -109,9 +101,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section soft-section">
+      <LearningThemes />
+
+      <section className="section soft-section parent-priorities">
         <div className="container question-layout">
-          <SectionHeading eyebrow="BEFORE YOU ASK" title="在詢問前｜我們準備好了" description="日程、環境、費用，是家長最常詢問的重點。我們先整理好，讓您查看更輕鬆。" />
+          <SectionHeading eyebrow="BEFORE YOU ASK" title="你在意的事｜我們一起了解" description="日程、環境、費用，是家長最常詢問的重點。我們先整理好，讓您查看更輕鬆。" />
           <div className="question-list">
             {parentQuestions.map((item) => (
               <Link href={item.href} className="question-row" key={item.number}>
@@ -124,7 +118,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section home-rhythm-section" id="home-rhythm">
         <div className="container split-intro">
           <div>
             <p className="eyebrow">A DAY AT HUA-ER-YUAN</p>
@@ -210,7 +204,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section faq-section">
+      <section className="section faq-section" id="parent-questions">
         <div className="container faq-layout">
           <div><p className="eyebrow">QUICK ANSWERS</p><h2>常見問題</h2></div>
           <div className="faq-list">

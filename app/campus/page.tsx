@@ -1,3 +1,4 @@
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
@@ -21,8 +22,9 @@ export default function CampusPage() {
   return (
     <>
       <PageHero eyebrow="CAMPUS & EVERYDAY" title="環境看得見｜照顧更安心" description="園所位於 2 樓，以室內教室、學習區與大肌肉活動空間安排每天的生活與探索。" note="環境照片只使用不含孩子、證件與聯絡資料的安全畫面。" />
+      <SectionNav items={[{ href: "#space", label: "室內空間" }, { href: "#safety", label: "安全衛生" }, { href: "#stories", label: "活動紀錄" }, { href: "#alumni", label: "成長相簿" }]} />
       <div id="page-content">
-        <section className="section space-section toy-section toy-rainbow">
+        <section className="section space-section toy-section toy-rainbow" id="space">
           <div className="container">
             <SectionHeading eyebrow="SPACE TOUR" title="室內空間怎麼用｜直接說清楚" description="正式立案室內面積 218.07 平方公尺；園內沒有樓梯、室外活動空間與固定式遊戲設施。" />
             <div className="campus-gallery">
@@ -54,7 +56,7 @@ export default function CampusPage() {
           </div>
         </section>
 
-        <section className="section stories-section toy-section toy-shapes">
+        <section className="section stories-section toy-section toy-shapes" id="stories">
           <div className="container">
             <SectionHeading eyebrow="DAILY STORIES" title="一張照片｜一段成長故事" description="活動紀錄依學期、班級與主題整理，不只放照片。" />
             <div className="story-grid">

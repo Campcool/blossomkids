@@ -30,7 +30,7 @@ export function SiteHeader() {
               <ContactIcon type="phone" className="header-action-mark" />
               <span className="header-action-copy"><small>招生專線</small><strong>2976-1536</strong></span>
             </a>
-            <a className="header-contact header-line" href={site.lineHref} target="_blank" rel="noreferrer" aria-label="開啟華兒園 LINE 熱點"><ContactIcon type="line" /></a>
+            <a className="header-contact header-line" href={site.lineHref} target="_blank" rel="noreferrer" aria-label="加入華兒園園長 LINE"><ContactIcon type="line" /></a>
             <Link className="button button-small header-cta" href="/admissions#visit-form"><ContactIcon type="visit" />預約參觀</Link>
           </div>
 

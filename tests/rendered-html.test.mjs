@@ -11,7 +11,7 @@ test("renders the complete preschool homepage", async () => {
   assert.match(html, /好好玩/);
   assert.match(html, /預約參觀/);
   assert.match(html, /application\/ld\+json/);
-  assert.match(html, /hero-learning-space\.jpg/);
+  assert.match(html, /themes\/paper-garden\.webp/);
   assert.match(html, /graduation-30-masked\.jpg/);
   assert.match(html, /class="media-caption"/);
   assert.match(html, /tel:\+886229761536/);

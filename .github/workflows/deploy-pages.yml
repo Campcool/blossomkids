@@ -42,6 +42,10 @@ jobs:
       # 測試排在 build 之後：斷言讀的是 out/，也就是下一步要上傳的那份產物。
       - name: Test the artifact that is about to ship
         run: npm test
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Check responsive pages and visit flow
+        run: npm run test:browser
       - uses: actions/upload-pages-artifact@v5
         with:
           path: out

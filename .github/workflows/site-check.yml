@@ -10,6 +10,7 @@ on:
       - 'lib/**'
       - 'public/**'
       - 'tests/**'
+      - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
       - 'next.config.ts'
@@ -49,6 +50,10 @@ jobs:
         run: npx next build
       - name: Full test suite
         run: npm test
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Check responsive pages and visit flow
+        run: npm run test:browser
 
   live-probe:
     if: github.event_name == 'workflow_dispatch'

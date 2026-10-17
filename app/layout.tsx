@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ContactDock } from "@/components/contact-dock";
 import { site } from "@/lib/site-data";
 import "./globals.css";
+import "./editorial.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://blossomkids.tw"),
@@ -51,7 +52,7 @@ const structuredData = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-Hant">
-      <body>
+      <body className="school-editorial">
         <a className="skip-link" href="#main-content">跳到主要內容</a>
         <SiteHeader />
         <main id="main-content">{children}</main>

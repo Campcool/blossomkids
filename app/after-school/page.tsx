@@ -1,3 +1,4 @@
+import { SectionNav } from "@/components/section-nav";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
@@ -16,8 +17,9 @@ export default function AfterSchoolPage() {
   return (
     <>
       <PageHero eyebrow="AFTER SCHOOL · ELEMENTARY" title="放學有人接｜課後有人陪" description="從放學接送、點名，到作業、點心、活動和接回時間，每一步都說清楚。" note="正式立案名稱、招收年級與服務內容，將依園方證照確認。" />
+      <SectionNav items={[{ href: "#care", label: "照顧重點" }, { href: "#after-rhythm", label: "課後節奏" }, { href: "#programs", label: "服務內容" }, { href: "#handoff", label: "接送交接" }]} />
       <div id="page-content">
-        <section className="section after-priorities toy-section toy-stair">
+        <section className="section after-priorities toy-section toy-stair" id="care">
           <div className="container">
             <SectionHeading eyebrow="WHAT WE CARE ABOUT" title="接送、作業、餐點、活動" description="四件事逐項公開，家長不用猜。" />
             <div className="feature-grid">
@@ -26,7 +28,7 @@ export default function AfterSchoolPage() {
           </div>
         </section>
 
-        <section className="section after-schedule toy-section toy-beads">
+        <section className="section after-schedule toy-section toy-beads" id="after-rhythm">
           <div className="container content-split">
             <div><p className="eyebrow">AFTER-SCHOOL RHYTHM</p><h2>先安頓身心<br />再從容完成</h2><p className="large-copy">從接到孩子、點心緩衝、完成作業到家長接回，按時間排列。</p></div>
             <div className="vertical-timeline">
@@ -39,7 +41,7 @@ export default function AfterSchoolPage() {
           </div>
         </section>
 
-        <section className="section soft-section programs-section toy-section toy-shapes">
+        <section className="section soft-section programs-section toy-section toy-shapes" id="programs">
           <div className="container">
             <SectionHeading eyebrow="PROGRAMS" title="服務逐項整理｜安排一目了然" description="招收年級、時間、費用與師資；尚未確認的內容直接標示待補。" />
             <div className="program-table">
@@ -53,7 +55,7 @@ export default function AfterSchoolPage() {
           </div>
         </section>
 
-        <section className="section handoff-section toy-section toy-jigsaw">
+        <section className="section handoff-section toy-section toy-jigsaw" id="handoff">
           <div className="container info-grid compact-info">
             <div><p className="eyebrow">SAFETY HANDOFF</p><h2>交接有流程<br />接送更安心</h2><p>公開接送方式、點名通知、代理接送人與最晚接回時間。</p></div>
             <dl className="public-preview"><div><dt>專用車輛</dt><dd>公開索引顯示 0 輛</dd></div><div><dt>接送學校</dt><dd><StatusBadge /></dd></div><div><dt>點名通知</dt><dd><StatusBadge /></dd></div><div><dt>最晚接回</dt><dd><StatusBadge /></dd></div></dl>
