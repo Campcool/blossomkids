@@ -95,7 +95,20 @@ export function VisitForm() {
   }
 
   return (
-    <form className="visit-form" onSubmit={handleSubmit}>
+    <form className="visit-form bk-service-form" onSubmit={handleSubmit}>
+      <fieldset className="bk-service-options" aria-describedby="bk-service-hint">
+        <legend>想了解的服務 <span>*</span></legend>
+        <p className="bk-service-hint" id="bk-service-hint">請選一項，也可以先參觀再決定。</p>
+        <div className="bk-service-grid">
+          {["幼兒園", "安親／課後照顧", "寒暑假活動", "還不確定，想先參觀"].map((service) => (
+            <label className="bk-service-card" key={service}>
+              <input type="radio" name="service" value={service} required />
+              <span className="bk-service-dot" aria-hidden="true" />
+              <span className="bk-service-title">{service}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <div className="field-grid">
         <label>
           家長姓名 <span>*</span>
@@ -108,16 +121,6 @@ export function VisitForm() {
         <label>
           孩子出生年月 <span>*</span>
           <input name="birthMonth" required type="month" />
-        </label>
-        <label>
-          想了解的服務 <span>*</span>
-          <select name="service" required defaultValue="">
-            <option value="" disabled>請選擇</option>
-            <option>幼兒園</option>
-            <option>安親／課後照顧</option>
-            <option>寒暑假活動</option>
-            <option>還不確定，想先參觀</option>
-          </select>
         </label>
         <label>
           希望聯絡時段

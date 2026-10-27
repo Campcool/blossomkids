@@ -310,3 +310,78 @@
 @media (max-width: 780px) {
   .school-editorial .record-grid > a { border-right: 0; }
 }
+
+/* Adapted from Uiverse.io by andrew-demchenk0.
+   Radio-buttons/andrew-demchenk0_dry-elephant-32.html
+   commit adbd2adde0a299a3956ea288fb444ec01891ca41. See public/licenses/uiverse-visit-service-cards.txt.
+   Scope, native labels, keyboard focus, responsive dimensions and brand colors added.
+*/
+.school-editorial .visit-form .bk-service-options {
+  border: 0; padding: 0; margin: 0 0 28px; min-width: 0;
+}
+.school-editorial .visit-form .bk-service-options legend {
+  padding: 0; color: #18352e; font-size: 1rem; font-weight: 800;
+}
+.school-editorial .visit-form .bk-service-options legend > span { color: var(--clay); }
+.school-editorial .visit-form .bk-service-hint {
+  margin: 6px 0 14px; color: #52665e; font-size: .875rem; line-height: 1.65;
+}
+.school-editorial .visit-form .bk-service-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+}
+.school-editorial .visit-form .bk-service-card {
+  position: relative; display: flex; align-items: center; min-height: 88px;
+  margin: 0; padding: 16px 40px 16px 16px; border: 1px solid #adbbb3;
+  border-radius: 10px; background: #fffdf8; cursor: pointer;
+  transition: border-color .15s, background-color .15s;
+}
+.school-editorial .visit-form .bk-service-card input {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.school-editorial .visit-form .bk-service-card .bk-service-title {
+  color: #18352e; font-size: 1rem; font-weight: 700; line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.school-editorial .visit-form .bk-service-dot {
+  position: absolute; right: 14px; top: 17px; width: 18px; height: 18px;
+  border: 1.5px solid #7c9185; border-radius: 50%; background: white;
+}
+.school-editorial .visit-form .bk-service-card input:checked + .bk-service-dot::after {
+  content: ""; position: absolute; inset: 3px; border-radius: 50%; background: #0d2923;
+}
+.school-editorial .visit-form .bk-service-card:has(input:checked) {
+  border: 2px solid #0d2923; padding: 15px 39px 15px 15px; background: #e7eee5;
+}
+.school-editorial .visit-form .bk-service-card:has(input:focus-visible) {
+  outline: 3px solid #a56712; outline-offset: 3px;
+}
+@media (hover: hover) {
+  .school-editorial .visit-form .bk-service-card:hover { border-color: #0d2923; background: #f0f4ed; }
+}
+@media (max-width: 380px) {
+  .school-editorial .visit-form .bk-service-card { padding-left: 12px; padding-right: 32px; min-height: 100px; }
+  .school-editorial .visit-form .bk-service-card:has(input:checked) { padding-left: 11px; padding-right: 31px; }
+  .school-editorial .visit-form .bk-service-dot { right: 10px; }
+}
+@media (max-width: 340px) {
+  .school-editorial .visit-form .bk-service-grid { grid-template-columns: 1fr; }
+  .school-editorial .visit-form .bk-service-card { min-height: 68px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .school-editorial .visit-form .bk-service-card { transition: none; }
+}
+@media (forced-colors: active) {
+  .school-editorial .visit-form .bk-service-card:has(input:checked) { outline: 2px solid Highlight; outline-offset: -4px; }
+}
+
+/* Keep the remaining five inputs compact on wider forms, in their original reading order. */
+.school-editorial .bk-service-form .field-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.school-editorial .bk-service-form .field-grid > label { grid-column: span 3; min-width: 0; }
+.school-editorial .bk-service-form .field-grid > label:nth-child(n+3) { grid-column: span 2; }
+.school-editorial .bk-service-form .field-grid :is(input, select) { min-width: 0; }
+@media (max-width: 640px) {
+  .school-editorial .bk-service-form .field-grid { grid-template-columns: 1fr; }
+  .school-editorial .bk-service-form .field-grid > label,
+  .school-editorial .bk-service-form .field-grid > label:nth-child(n+3) { grid-column: auto; }
+}

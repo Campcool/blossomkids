@@ -85,3 +85,9 @@ Warm, trustworthy and child-friendly without looking childish. The interface sho
 ## 2026-10-17 — missing content stays unpublished
 
 Owner instruction supersedes the earlier placeholder strategy for teacher profiles and photography. Keep supplied campus photographs and masked graduation media. Unfilled media placeholders are not rendered; entire unfilled teacher/activity sections and their links share server-side publication gates. The remaining homepage photo and yearbook use a single explicit column; the text-only school story is at most 760px wide. Resource cards use auto-fit columns, so hiding the teacher link leaves no reserved fourth column. Do not restore placeholders to complete a visual grid. Recovery requirements: `docs/CONTENT-HANDOFF.md`.
+
+## 2026-10-27 — visit service choice cards
+
+The admissions form starts with four native, labelled service radios. Keep the original values, no preselection and required validation; message composition and contact destinations stay in the same handlers.
+Cards use paper surfaces, ink borders, sage selected background and the existing amber focus outline; the checked dot reinforces selection. Two columns normally, one below 340px; no scale animation. Keep the remaining mobile fields in one column (including their grid-column reset), with two plus three compact input columns on wide forms.
+This is a partial adaptation of andrew-demchenk0 / dry-elephant-32 from Uiverse Galaxy, pinned to adbd2adde0a299a3956ea288fb444ec01891ca41. The complete MIT notice is in public/licenses/uiverse-visit-service-cards.txt. Approved comparison and tradeoffs: docs/design/2026-10-27-visit-service-cards.md.
