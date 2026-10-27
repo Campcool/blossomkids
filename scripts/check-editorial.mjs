@@ -37,7 +37,7 @@ try {
   const page = await context.newPage();
   page.on('pageerror', e => issues.push(`JavaScript: ${e.message}`));
   page.on('response', r => { if (r.url().startsWith(origin) && r.status() >= 400) issues.push(`HTTP ${r.status()}: ${r.url()}`); });
-  for (const width of [320, 390, 768, 1440]) {
+  for (const width of [320, 375, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of ['/', '/preschool', '/after-school', '/campus', '/admissions', '/parents', '/about', '/privacy']) {
       await page.goto(origin + path, { waitUntil: 'networkidle' });
@@ -72,6 +72,43 @@ try {
       delete result.internalAnchors;
       report.routes.push({ width, path, ...result });
       if (result.pendingMedia || result.overflow > 1 || result.h1Count !== 1 || result.images.length || result.missingAnchors.length || result.smallLinks.length || !result.phone || !result.line || !result.fontLoaded) issues.push({ width, path, result });
+      if (path === '/admissions') {
+        const form = page.locator('.visit-form');
+        const radios = form.getByRole('radio');
+        const serviceValues = ['幼兒園', '安親／課後照顧', '寒暑假活動', '還不確定，想先參觀'];
+        assert.equal(await radios.count(), 4);
+        assert.deepEqual(await radios.evaluateAll(nodes => nodes.map(n => n.value)), serviceValues);
+        assert.equal(await form.locator('[name="service"]:checked').count(), 0, 'No service may be preselected');
+        assert.ok(await radios.evaluateAll(nodes => nodes.every(n => n.required && n.validity.valueMissing)));
+        for (const value of serviceValues) {
+          const radio = page.getByRole('radio', { name: value, exact: true });
+          await form.locator('.bk-service-card').filter({ has: radio }).click();
+          assert.equal(await radio.isChecked(), true);
+          assert.equal(await form.evaluate(f => new FormData(f).get('service')), value);
+        }
+        const first = page.getByRole('radio', { name: serviceValues[0], exact: true });
+        await first.focus();
+        await page.keyboard.press('ArrowRight');
+        assert.equal(await form.evaluate(f => new FormData(f).get('service')), serviceValues[1]);
+        const ring = await page.locator('.bk-service-card:has(input:focus-visible)').evaluate(n => getComputedStyle(n).outlineWidth);
+        assert.equal(ring, '3px', 'Keyboard focus ring stays visible');
+        const boxes = await form.locator('.bk-service-card').evaluateAll(nodes => nodes.map(n => ({width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height})));
+        assert.ok(boxes.every(x => x.width >= 44 && x.height >= 44));
+        if (width <= 390) {
+          const bounds = await form.boundingBox();
+          const fields = await form.locator('.field-grid > label').evaluateAll(nodes => nodes.map(n => ({x:n.getBoundingClientRect().x,width:n.getBoundingClientRect().width})));
+          assert.ok(fields.every(f => f.width >= bounds.width - 60), 'Mobile fields remain full width');
+          assert.ok(fields.every(f => Math.abs(f.x - fields[0].x) < 1), 'Mobile fields remain in one column');
+        }
+        if ([375, 768, 1440].includes(width)) {
+          await form.locator('.bk-service-card').filter({has:first}).click();
+          const visual = await form.screenshot({type:'jpeg',quality:90,style:'.site-header, .contact-dock, .skip-link { visibility: hidden !important; }'});
+          await writeFile(`${evidence}/visit-cards-${width}.jpg`, visual);
+          const encoded = visual.toString('base64');
+          for (let offset = 0; offset < encoded.length; offset += 10000) console.log(`VISIT_CARDS_MEDIA:${width}:${offset / 10000}:${encoded.slice(offset, offset + 10000)}`);
+        }
+        report.checks.push(`Visit service cards: ${width}px labels, no default, required, choice values, keyboard and layout`);
+      }
       if ([390, 1440].includes(width) && ['/', '/preschool', '/admissions', '/campus', '/about'].includes(path)) {
         const name = path === '/' ? 'home' : path.slice(1);
         await page.screenshot({ path: `${evidence}/${name}-${width}.png`, fullPage: true });
@@ -114,7 +151,8 @@ try {
   await page.locator('[name="parentName"]').fill('測試家長');
   await page.locator('[name="phone"]').fill('0900000000');
   await page.locator('[name="birthMonth"]').fill('2023-04');
-  await page.locator('[name="service"]').selectOption({ label: '幼兒園' });
+  const serviceCard = page.locator('.bk-service-card').filter({has:page.getByRole('radio', {name:'幼兒園',exact:true})});
+  await serviceCard.click();
   await page.locator('[name="message"]').fill('測試用資料：想了解參觀安排。');
   await page.locator('.consent-field input').check();
   await page.getByRole('button', { name: '整理預約訊息', exact: true }).click();
