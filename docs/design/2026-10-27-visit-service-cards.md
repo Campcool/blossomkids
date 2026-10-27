@@ -29,4 +29,4 @@ https://github.com/Campcool/AI-skill/tree/74f05ac9e1a67811fc9a3ec1d94f36037a6fda
 - 檢查均使用虛構資料與本機靜態頁，不聯絡園方；正式發布由原GitHub Pages管線處理。最終執行狀態以本次PR／Actions為準，未聲稱真機、Safari、正式LINE收件或轉換成效已驗證。
 - 師資與未補影像維持既有隱藏策略；補件仍依 docs/CONTENT-HANDOFF.md。價格、名額、電話、LINE、實拍及已打碼照片保持原有事實。
 
-獨立暫存建置實測：TypeScript／ESLint、Next／vinext、19項內容測試及40個頁面尺寸組合與11項互動檢查通過。字型子集已重產，blob仍為 d5c60b331698646fbf8e2740a60df4a757c73a74，因此不重複提交同一二進位檔。紀錄：https://github.com/Campcool/AI-skill/actions/runs/40470852190 。產品PR仍由既有Site Check獨立執行。
+獨立暫存建置實測：TypeScript／ESLint、Next／vinext、20項內容測試及40個頁面尺寸組合與11項互動檢查通過。字型子集已重產，blob仍為 d5c60b331698646fbf8e2740a60df4a757c73a74，因此不重複提交同一二進位檔。紀錄：https://github.com/Campcool/AI-skill/actions/runs/40470852190 。產品PR仍由既有Site Check獨立執行。
