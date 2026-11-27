@@ -1,12 +1,12 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { VisitForm } from "@/components/visit-form";
 import { site } from "@/lib/site-data";
 
-export const metadata: Metadata = { title: "招生資訊與預約參觀", description: "華兒園招生年齡、流程、收費、補助、退費與預約參觀表單。" };
+export const metadata = pageMetadata("/admissions", "三重幼兒園招生・預約參觀", "三重華兒園招生參觀資訊：年齡、入園流程、費用確認、補助與退費說明。先整理參觀需求，再以 LINE 或電話向園方確認名額與時間。");
 
 export default function AdmissionsPage() {
   return (

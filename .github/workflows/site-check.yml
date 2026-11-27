@@ -50,6 +50,8 @@ jobs:
         run: npx next build
       - name: Full test suite
         run: npm test
+      - name: Check search metadata in the published artifact
+        run: node scripts/check-search.mjs out
       - name: Install browser
         run: npx playwright install --with-deps chromium
       - name: Check responsive pages and visit flow

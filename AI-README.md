@@ -1,5 +1,12 @@
 # AI-README｜華兒園精緻幼兒園官方網站交接文件
 
+## 2026-11-27 搜尋曝光優化（本輪）
+
+各頁canonical及本地搜尋／分享資訊。8個公開路由使用共用metadata helper，各頁獨立canonical、title、description、og:url／title／description、Twitter資訊；首頁不在root layout設定canonical，避免子頁被合併首頁。Preschool補穩定#school；依規則重產Iansui字型子集。保留未補師資／照片隱藏及所有招生資料邊界。
+
+基準 `4a89c348ae3733e7333adeb0592edae15cd42349`。Next正式out建置、TypeScript、ESLint、20項內容測試通過；搜尋門禁實際讀8個HTML（處理Next的同名路由資源目錄），非僅首頁。 修改、回退、CI／正式驗證界線及成效待辦見 [本輪交付](docs/search-exposure-2026-11-27.md)。待辦：核對本輪CI／正式新頁，並以GSC及實際營運樣本追蹤。新增正式產物搜尋門禁；未驗排名、AI引用、正式LINE收件或營收。既有歷史待辦按日期保留，本輪授權優先。
+
+
 > 本倉庫的完整交接文件是 `README.md`（Codex × Claude × Manus 共同維護的 AI-readme）。本檔案是**供 AI 快速定位的索引與最新狀態快照**：接手者讀完本檔後，應完整閱讀 `README.md` 再動手。
 
 ## 2026-10-17 未補師資與照片先隱藏（業主最新指示）

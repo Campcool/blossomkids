@@ -1,10 +1,10 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 
-export const metadata: Metadata = { title: "家長專區", description: "華兒園家長公告、行事曆、菜單、常用文件、聯絡方式與隱私說明。" };
+export const metadata = pageMetadata("/parents", "家長專區・菜單與園務公告", "三重華兒園家長公告、行事曆、菜單、常用文件與聯絡方式，集中查閱公開園務資訊。");
 
 const menuPreview = [
   { day: "第 1 日", morning: "餛飩湯", lunch: "白飯、馬鈴薯佐雞肉、蝦仁炒蛋、時蔬、蘿蔔貢丸湯、水果", afternoon: "海帶芽毛豆粥" },
