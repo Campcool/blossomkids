@@ -1,6 +1,6 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { schoolContentVisibility } from "@/lib/content-visibility";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { PhotoSlot } from "@/components/photo-slot";
@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { site } from "@/lib/site-data";
 
-export const metadata: Metadata = { title: "校園日常", description: "華兒園已公開的環境設備照片、安全衛生流程與畢業紀錄。" };
+export const metadata = pageMetadata("/campus", "三重幼兒園環境・校園日常", "查看三重華兒園已公開的環境設備照片、安全衛生流程與畢業紀錄，了解室內空間、餐具、飲水與衛浴安排。");
 
 const carePhotos = [
   { src: "/images/campus/bedding-storage.png", alt: "華兒園分格收納的幼兒棉被與寢具", caption: "分格寢具收納｜保持通風並依行事曆清洗" },

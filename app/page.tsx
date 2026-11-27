@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import Image from "next/image";
 import { schoolContentVisibility } from "@/lib/content-visibility";
@@ -48,6 +49,8 @@ const dailyRecords = [
   { title: "認識老師", text: "照片、資格、年資與教學專長", href: "/about#team", image: "/images/toys/cutouts/pink-tower.png" },
   { title: "成長相簿", text: "已公開的畢業影像紀錄", href: "/campus#alumni", image: "/images/toys/cutouts/rainbow.png" },
 ].filter((record) => record.href !== "/about#team" || schoolContentVisibility.teacherProfiles);
+
+export const metadata = pageMetadata("/", "三重幼兒園・安親課後照顧", "新北市三重區華兒園精緻幼兒園，位於三和路二段75號2樓。了解幼幼班至大班、國小課後照顧、園所環境與招生參觀方式，來電或透過 LINE 確認最新名額與費用。");
 
 export default function Home() {
   return (

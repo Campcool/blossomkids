@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { PageHero } from "@/components/page-hero";
 import { site } from "@/lib/site-data";
 
-export const metadata: Metadata = {
-  title: "隱私權說明",
-  description: "華兒園官網個人資料蒐集、使用、兒童影像授權與聯絡窗口說明。",
-};
+export const metadata = pageMetadata("/privacy", "隱私權說明", "華兒園官網個人資料使用、兒童影像授權與聯絡窗口說明。預約需求由您自行透過 LINE 或電話傳送，網站不自動上傳表單資料。");
 
 export default function PrivacyPage() {
   return (

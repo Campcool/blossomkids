@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Preschool",
+  "@id": "https://blossomkids.tw/#school",
   name: site.fullName,
   alternateName: site.shortName,
   url: "https://blossomkids.tw",

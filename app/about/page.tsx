@@ -1,13 +1,13 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { schoolContentVisibility } from "@/lib/content-visibility";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { PhotoSlot } from "@/components/photo-slot";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 import { site } from "@/lib/site-data";
 
-export const metadata: Metadata = { title: "關於華兒園", description: schoolContentVisibility.teacherProfiles ? "華兒園教育理念、園所故事、師資團隊、立案公開資訊與聯絡方式。" : "華兒園教育理念、園所故事、立案公開資訊與聯絡方式。" };
+export const metadata = pageMetadata("/about", "關於華兒園・三重立案幼兒園", "認識新北市三重區華兒園精緻幼兒園的教育理念、園所故事、立案資料與聯絡方式。地址為三和路二段75號2樓，參觀請先預約。");
 
 export default function AboutPage() {
   return (

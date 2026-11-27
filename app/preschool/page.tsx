@@ -1,12 +1,12 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { LearningThemes } from "@/components/learning-themes";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 
-export const metadata: Metadata = { title: "幼兒園課程", description: "華兒園幼幼班、小班、中班與大班課程、作息、餐點及學習紀錄欄位。" };
+export const metadata = pageMetadata("/preschool", "三重幼兒園課程・幼幼班至大班", "華兒園位於新北市三重區，整理幼幼班、小班、中班與大班的學習重點、一日作息與餐點資訊。查看課程與生活安排，再預約到園參觀。");
 
 const ageGroups = [
   {

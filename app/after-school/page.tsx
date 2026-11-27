@@ -1,10 +1,10 @@
+import { pageMetadata } from "@/lib/page-metadata";
 import { SectionNav } from "@/components/section-nav";
-import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeading } from "@/components/section-heading";
 import { StatusBadge } from "@/components/status-badge";
 
-export const metadata: Metadata = { title: "安親課後照顧", description: "華兒園安親班與課後照顧的接送、作業、活動、供餐與寒暑假服務欄位。" };
+export const metadata = pageMetadata("/after-school", "三重安親班・國小課後照顧", "了解三重華兒園國小課後照顧的接送、作業、餐點與活動安排。服務年級、時間與費用請先來電確認，再安排參觀。");
 
 const serviceItems = [
   ["安心交接", "接送學校、方式、點名與未到班通知，逐項說明。"],
